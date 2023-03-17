@@ -6,7 +6,36 @@ import { FacultyMenuPage } from './faculty-menu.page';
 const routes: Routes = [
   {
     path: '',
-    component: FacultyMenuPage
+    component: FacultyMenuPage,
+    children : [
+      {
+        path: 'faculty-dashboard',
+        loadChildren: () => import('../faculty-dashboard/faculty-dashboard.module').then( m => m.FacultyDashboardPageModule)
+      },
+      {
+        path: 'add-booking',
+        loadChildren: () => import('../add-booking/add-booking.module').then( m => m.AddBookingPageModule)
+      },
+      {
+        path: 'view-bookings',
+        loadChildren: () => import('../view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
+      },
+      {
+        path: 'update-bookings',
+        loadChildren: () => import('../update-bookings/update-bookings.module').then( m => m.UpdateBookingsPageModule)
+      },
+      {
+        path: '',
+        redirectTo: '/faculty-menu/faculty-dashboard',
+        pathMatch: 'full'
+      }
+    ]
+
+  },
+  {
+    path: '',
+    redirectTo: '/faculty-menu/faculty-menu/faculty-dashboard',
+    pathMatch: 'full'
   }
 ];
 
