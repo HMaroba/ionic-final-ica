@@ -6,5 +6,33 @@
 
 <ion-content [fullscreen]="true">
   <ion-title style="margin-top: 10px;">Faculty Bookings</ion-title>
+  <ion-list class="ios list-ios hydrated">
+
+    <ion-item *ngFor="let book of bookings" class="user-list">
+      <ion-label>
+        <h5>
+          <ion-icon name="person"></ion-icon> {{book.facultyName}}
+        </h5>
+        <p>
+          <ion-icon name="call"></ion-icon> {{book.phoneNumbers}}
+        </p>
+        <p>
+          <ion-icon name="mail"></ion-icon> {{book.status}}
+        </p>
+        <p>
+          <ion-icon name="calendar"></ion-icon> {{book.date}}
+        </p>
+      </ion-label>
+
+      <div class="item-note" item-end>
+        <button ion-button clear>
+          <ion-icon name="create" style="zoom:2.0" [routerLink]="['/tabs/tab3', book.id]"></ion-icon>
+        </button>
+        <button ion-button clear (click)="deleteBooking(book.id)">
+          <ion-icon name="trash" style="zoom:2.0"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

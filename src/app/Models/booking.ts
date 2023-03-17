@@ -3,6 +3,7 @@ export default interface Booking {
   facultyName? : string;
   date? : Date;
   purpose? : string;
+  status? : string;
   emailAddress? : string;
   phoneNumbers? : string;
 }

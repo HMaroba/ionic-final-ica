@@ -22,6 +22,7 @@ export class AddBookingPage implements OnInit {
     this.bookingform = this.formBuilder.group({
       facultyName : ['', Validators.required],
       purpose: ['', Validators.required],
+      status: 'PENDING',
       date : ['', Validators.required],
       emailAddress : ['',[ Validators.required, Validators.email]],
       phoneNumbers : ['', [Validators.required, Validators.minLength(8)]]
