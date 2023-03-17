@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'update-bookings',
     loadChildren: () => import('./update-bookings/update-bookings.module').then( m => m.UpdateBookingsPageModule)
   },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
 ];
 
 @NgModule({
