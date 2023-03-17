@@ -21,8 +21,16 @@ const routes: Routes = [
         loadChildren: () => import('../view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
       },
       {
-        path: 'update-bookings',
+        path: 'update/:id',
         loadChildren: () => import('../update-bookings/update-bookings.module').then( m => m.UpdateBookingsPageModule)
+      },
+      {
+        path: 'faculty-dashboard',
+        loadChildren: () => import('../faculty-dashboard/faculty-dashboard.module').then( m => m.FacultyDashboardPageModule)
+      },
+      {
+        path: 'faculty-profile',
+        loadChildren: () => import('../faculty-profile/faculty-profile.module').then( m => m.FacultyProfilePageModule)
       },
       {
         path: '',

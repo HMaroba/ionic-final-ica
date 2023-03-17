@@ -13,10 +13,12 @@ export class AddBookingPage implements OnInit {
   bookingform!: FormGroup;
   isSubmitted = false;
 
+
   constructor(public formBuilder: FormBuilder,
     public bookingService: BookingService,
     public router: Router,
-    ) { }
+    ) {
+     }
 
   ngOnInit() {
     this.bookingform = this.formBuilder.group({
@@ -36,7 +38,7 @@ export class AddBookingPage implements OnInit {
       this.bookingService.book(this.bookingform.value).then((res: any) => {
         console.log(res)
         this.bookingform.reset();
-        // this.router.navigate(['/tabs']);
+        this.router.navigate(['/faculty-menu']);
       })
         .catch((error: any) => console.log(error));
     }

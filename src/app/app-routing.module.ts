@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
   },
   {
-    path: 'update-bookings',
+    path: 'update',
     loadChildren: () => import('./update-bookings/update-bookings.module').then( m => m.UpdateBookingsPageModule)
   },
   {
@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'faculty-menu',
     loadChildren: () => import('./faculty-menu/faculty-menu.module').then( m => m.FacultyMenuPageModule)
+  },
+  {
+    path: 'faculty-profile',
+    loadChildren: () => import('./faculty-profile/faculty-profile.module').then( m => m.FacultyProfilePageModule)
   },
 ];
 

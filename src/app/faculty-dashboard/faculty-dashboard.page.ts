@@ -9,32 +9,32 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./faculty-dashboard.page.scss'],
 })
 export class FacultyDashboardPage implements OnInit {
+  bookings!: Booking[];
 
-  bookings! : Booking[];
-
-  constructor(public formBuilder: FormBuilder,
-    public bookingService: BookingService,) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    public bookingService: BookingService
+  ) {}
 
   ngOnInit() {
     this.bookingService.getBookings().subscribe((res) => {
       this.bookings = res.map((t) => {
-        return{
+        return {
           id: t.payload.doc.id,
-          ...t.payload.doc.data() as Booking
-        }
-      })
-    })
+          ...(t.payload.doc.data() as Booking),
+        };
+      });
+    });
   }
-  AppointmentList(){
+  AppointmentList() {
     this.bookingService.getBookings().subscribe((data) => {
       console.log(data);
-    })
+    });
   }
-  deleteBooking(id: any){
-console.log(id);
-if(window.confirm('Are you sure you want to delete this booking ? ')){
-  this.bookingService.deleteBooking(id)
-}
+  deleteBooking(id: any) {
+    console.log(id);
+    if (window.confirm('Are you sure you want to delete this booking ? ')) {
+      this.bookingService.deleteBooking(id);
+    }
   }
-
 }
