@@ -1,20 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title style="text-align: center"> HomePage </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form>
+      <ion-item fill="solid">
+        <ion-label position="floating">Email Address</ion-label>
+        <ion-input placeholder="Enter your email address"></ion-input>
+      </ion-item>
+      <ion-item fill="solid">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input placeholder="Enter your password "></ion-input>
+      </ion-item>
+
+      <ion-button expand="block">Submit</ion-button>
+      <div
+        style="width: 50%; border-top: 1px solid #d4d4d4; margin: 8px 0"
+      ></div>
+      OR
+      <div
+        style="width: 50%; border-top: 1px solid #d4d4d4; margin: 8px 0"
+      ></div>
+      <ion-button expand="block">Register</ion-button>
+    </form>
   </div>
 </ion-content>
