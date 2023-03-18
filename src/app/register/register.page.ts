@@ -14,7 +14,7 @@ export class RegisterPage implements OnInit {
   loginform!: FormGroup;
   isSubmitted = false;
    id =   localStorage.getItem('userUID');
-   role = localStorage.getItem('role');
+
 
   get errorControl(){
     return this.loginform.controls;

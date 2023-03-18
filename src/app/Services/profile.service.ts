@@ -29,8 +29,6 @@ export class ProfileService {
     }
 
     saveProfile(addProfile: UserProfile){
-      const id =   localStorage.getItem('userUID');
-      console.log(id);
       return this.ngFirestore.collection('UsersProfile').add(addProfile);
     }
 }
