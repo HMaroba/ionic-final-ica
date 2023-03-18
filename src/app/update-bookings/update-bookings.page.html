@@ -16,7 +16,7 @@
       </ion-item>
       <span
         class="error"
-        *ngIf="errorControl['facultyName'].errors?.['required']"
+        *ngIf="isSubmitted && errorControl['facultyName'].errors?.['required']"
       >
         Faculty name is required
       </span>
@@ -80,7 +80,7 @@
       <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['minlength']">
         Phone number is 8 digits
       </span>
-      <ion-button expand="block" type="Submit">Submit</ion-button>
+      <ion-button expand="block" type="Submit" [disabled]="!updateform.valid">Submit</ion-button>
     </form>
   </div>
 </ion-content>

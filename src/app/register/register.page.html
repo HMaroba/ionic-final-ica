@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align: center;">Create An Account</ion-title>
+    <ion-title style="text-align: center">Create An Account</ion-title>
     <ion-buttons slot="start">
       <ion-button routerLink="/home">
         <ion-icon name="arrow-back-outline"></ion-icon>
@@ -11,27 +11,93 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <form>
+    <form [formGroup]="loginform" (ngSubmit)="register(email,password)">
       <ion-item>
         <ion-label position="floating">First Name</ion-label>
-        <ion-input placeholder="Enter your first name"></ion-input>
+        <ion-input
+          formControlName="name"
+          placeholder="Enter your first name"
+        ></ion-input>
       </ion-item>
+      <span
+        class="error2"
+        *ngIf="isSubmitted && errorControl['name'].errors?.['required']"
+      >
+        First name is required
+      </span>
       <ion-item>
         <ion-label position="floating">Last Name</ion-label>
-        <ion-input placeholder="Enter your last name"></ion-input>
+        <ion-input
+          formControlName="surname"
+          placeholder="Enter your last name"
+        ></ion-input>
       </ion-item>
+      <span
+        class="error2"
+        *ngIf="isSubmitted && errorControl['surname'].errors?.['required']"
+      >
+        Last name is required
+      </span>
       <ion-item>
         <ion-label position="floating">Phone Number</ion-label>
-        <ion-input placeholder="Enter your phone numbers"></ion-input>
+        <ion-input
+          formControlName="phoneNumber"
+          placeholder="Enter your phone numbers"
+          type="number"
+        ></ion-input>
       </ion-item>
+      <span
+      class="error2"
+      *ngIf="isSubmitted && errorControl['phoneNumber'].errors?.['required']"
+    >
+      Phone number is required
+    </span>
+    <span
+      class="error2"
+      *ngIf="isSubmitted && errorControl['phoneNumber'].errors?.['minlength']"
+    >
+      Phone number should be 8 characters
+    </span>
       <ion-item>
         <ion-label position="floating">Email Address</ion-label>
-        <ion-input placeholder="Enter your email address"></ion-input>
+        <ion-input
+          formControlName="email"
+          placeholder="Enter your email address"
+          #email
+        ></ion-input>
       </ion-item>
+      <span
+        class="error2"
+        *ngIf="isSubmitted && errorControl['email'].errors?.['required']"
+      >
+        Email address is required
+      </span>
+      <span
+        class="error2"
+        *ngIf="isSubmitted && errorControl['email'].errors?.['pattern']"
+      >
+        Valid Email address is required
+      </span>
       <ion-item>
         <ion-label position="floating">Password</ion-label>
-        <ion-input placeholder="Enter your password"></ion-input>
+        <ion-input
+          formControlName="password"
+          placeholder="Enter your password"
+          #password
+        ></ion-input>
       </ion-item>
+      <span
+        class="error2"
+        *ngIf="isSubmitted && errorControl['password'].errors?.['required']"
+      >
+        Password is required
+      </span>
+      <span
+        class="error2"
+        *ngIf="isSubmitted && errorControl['password'].errors?.['minlength']"
+      >
+        Password should be atleast 8 characters
+      </span>
       <ion-button expand="block" type="Submit">Submit</ion-button>
     </form>
   </div>
