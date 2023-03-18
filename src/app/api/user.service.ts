@@ -35,12 +35,6 @@ export class UserService {
 
   // Login in with email/password
   SignIn(email: string, password: string) {
-    let userID = localStorage.getItem('userUID') as string;
-    let Role = localStorage.getItem('role') as string;
-    console.log(userID);
-    console.log(Role);
-    let userD =  localStorage.getItem('user');
-    console.log(userD);
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
   }
   // Register user with email/password

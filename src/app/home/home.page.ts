@@ -11,6 +11,7 @@ export class HomePage implements OnInit {
 
   loginform!: FormGroup;
   isSubmitted = false;
+  role = localStorage.getItem('role');
 
   get errorControl(){
     return this.loginform.controls;
@@ -36,7 +37,15 @@ export class HomePage implements OnInit {
       .SignIn(email.value, password.value)
       .then((res) => {
         if (this.authService.isEmailVerified) {
-          this.router.navigate(['faculty-menu']);
+          if(this.role == 'Faculty'){
+            this.router.navigate(['faculty-menu']);
+            this.loginform.reset();
+            console.log(this.role);
+          }else{
+            this.router.navigate(['admin-dashboard']);
+            this.loginform.reset();
+          }
+
         } else {
           window.alert('Email is not verified');
           return false;

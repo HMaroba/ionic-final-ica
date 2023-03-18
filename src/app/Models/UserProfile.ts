@@ -1,9 +1,9 @@
 export interface UserProfile {
   uid: string;
   name: string;
-  lastName: string;
+  surname: string;
+  phoneNumber: number;
   email: string;
   role: string;
-  isAdmin: boolean;
 
 }

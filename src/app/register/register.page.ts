@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../api/user.service';
 import { Router } from '@angular/router';
+import { ProfileService } from '../Services/profile.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +13,8 @@ export class RegisterPage implements OnInit {
 
   loginform!: FormGroup;
   isSubmitted = false;
+   id =   localStorage.getItem('userUID');
+   role = localStorage.getItem('role');
 
   get errorControl(){
     return this.loginform.controls;
@@ -21,7 +24,9 @@ export class RegisterPage implements OnInit {
     public formBuilder: FormBuilder,
     public router : Router,
     public userService: UserService,
+    public usersServices: ProfileService,
     ) { }
+
 
   ngOnInit() {
     this.loginform = this.formBuilder.group({
@@ -29,7 +34,7 @@ export class RegisterPage implements OnInit {
       name : ['', Validators.required],
       surname : ['', Validators.required],
       role: 'Faculty',
-      // Validators.pattern('^((?!.*[s])(?=.*[A-Z])(?=.*d).{8,99})'),  password pattern
+      uid : this.id,
       password : ['', [Validators.required, Validators.minLength(8)]],
       phoneNumber : ['', [Validators.required, Validators.minLength(8)]]
     })
@@ -39,12 +44,12 @@ export class RegisterPage implements OnInit {
     this.isSubmitted = true;
     console.log(this.loginform.value);
     if(this.loginform.valid){
-      // this.userServices.saveProfile(this.loginform.value).then((res: any) => {
-      //   console.log(res)
-      //   this.loginform.reset();
-      //   this.router.navigate(['/home']);
-      // })
-        // .catch((error: any) => console.log(error));
+      this.usersServices.saveProfile(this.loginform.value).then((res: any) => {
+        console.log(res)
+        this.loginform.reset();
+        this.router.navigate(['/home']);
+      })
+        .catch((error: any) => console.log(error));
         this.userService
         .RegisterUser(email.value, password.value)
         .then(res => {
