@@ -42,8 +42,7 @@ export class HomePage implements OnInit {
       this.authService
       .SignIn(email.value, password.value)
       .then((res) => {
-        if (this.authService.isEmailVerified) {
-          if(this.role == 'Faculty'){
+         if(this.role == 'Faculty'){
             this.router.navigate(['faculty-menu']);
             this.loginform.reset();
             console.log(this.role);
@@ -52,11 +51,21 @@ export class HomePage implements OnInit {
             this.loginform.reset();
 
           }
+        // if (this.authService.isEmailVerified == true) {
+        //   if(this.role == 'Faculty'){
+        //     this.router.navigate(['faculty-menu']);
+        //     this.loginform.reset();
+        //     console.log(this.role);
+        //   }else{
+        //     this.router.navigate(['admin-dashboard']);
+        //     this.loginform.reset();
 
-        } else {
-          window.alert('Email is not verified');
-          return false;
-        }
+        //   }
+
+        // } else {
+        //   window.alert('Email is not verified');
+        //   return false;
+        // }
       })
       .catch((error) => {
         window.alert(error.message);
