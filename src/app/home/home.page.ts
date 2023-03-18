@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService} from '../api/user.service';
 import { Router } from '@angular/router';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -12,6 +16,7 @@ export class HomePage implements OnInit {
   loginform!: FormGroup;
   isSubmitted = false;
   role = localStorage.getItem('role');
+  id =   localStorage.getItem('userUID') as string;
 
   get errorControl(){
     return this.loginform.controls;
@@ -20,6 +25,7 @@ export class HomePage implements OnInit {
   constructor(public authService: UserService,
     public formBuilder: FormBuilder,
     public router: Router,
+    public db: AngularFirestore,
 
     ) {}
 
@@ -44,6 +50,7 @@ export class HomePage implements OnInit {
           }else{
             this.router.navigate(['admin-dashboard']);
             this.loginform.reset();
+
           }
 
         } else {

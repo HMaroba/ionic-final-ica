@@ -64,13 +64,6 @@ export class UserService {
       });
   }
 
-  // Returns true when user is looged in
-  // get isLoggedIn(): boolean {
-  //   const user = JSON.parse(localStorage.getItem('user') as string);
-  //   return user !== null && user.emailVerified !== false ? true : false;
-
-  // }
-
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user') as string);
     if(user === null || user === undefined) return false
@@ -83,25 +76,6 @@ export class UserService {
     return user.emailVerified !== false ? true : false;
   }
 
-  // Sign in with Gmail
-  GoogleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
-  }
-
-  // Auth providers
-  AuthLogin(provider: any) {
-    return this.ngFireAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.SetUserData(result.user);
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
-  }
 
   // Store user in localStorage
   SetUserData(user: any) {
@@ -114,7 +88,7 @@ export class UserService {
       displayName: user.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      role: 'FACULTY',
+      role: user.role,
     };
     return userRef.set(userData, {
       merge: true,
