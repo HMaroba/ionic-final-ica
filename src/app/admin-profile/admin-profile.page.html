@@ -11,7 +11,18 @@
 
 <ion-content>
   <div style="margin-top: 30%;">
-    <ion-button expand="block" type="Submit"  (click)="userService.SignOut()">Log Out</ion-button>
+    <ion-card  *ngIf="userService.userData as user">
+     <ion-card-header>
+      <ion-card-title>Hlalele Maroba</ion-card-title>
+     </ion-card-header>
+     <ion-card-content>
+      <ion-row>
+        <ion-icon name="mail" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
+        <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
+      </ion-row>
+       <ion-button expand="block" type="Submit"  (click)="userService.SignOut()">Log Out</ion-button>
+     </ion-card-content>
+    </ion-card>
 
   </div>
 </ion-content>
