@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'admin-dashboard',
-    canActivate: [GuardGuard],
+    // canActivate: [GuardGuard],
     loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
   },
   {
@@ -54,6 +54,10 @@ const routes: Routes = [
     path: 'faculty-profile',
     canActivate: [GuardGuard],
     loadChildren: () => import('./faculty-profile/faculty-profile.module').then( m => m.FacultyProfilePageModule)
+  },
+  {
+    path: 'add-faculty',
+    loadChildren: () => import('./add-faculty/add-faculty.module').then( m => m.AddFacultyPageModule)
   },
 ];
 
