@@ -17,11 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'faculty-dashboard',
-    canActivate: [GuardGuard],
-    loadChildren: () => import('./faculty-dashboard/faculty-dashboard.module').then( m => m.FacultyDashboardPageModule)
-  },
-  {
     path: 'admin-dashboard',
     canActivate: [GuardGuard],
     loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
@@ -44,11 +39,6 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
-  },
-  {
-    path: 'faculty-menu',
-    canActivate: [GuardGuard],
-    loadChildren: () => import('./faculty-menu/faculty-menu.module').then( m => m.FacultyMenuPageModule)
   },
   {
     path: 'faculty-profile',

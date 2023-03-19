@@ -44,7 +44,10 @@ export class ProfileService {
 
     getRole(role: string){
       return new Promise<any>((resolve) => {
-        this.ngFirestore.collection('UsersProfile' , ref => ref.where('role', '==', role));
+        this.ngFirestore.collection('UsersProfile' , ref => ref.where('role', '==', role)).valueChanges();
       })
+    }
+    getAdmin(){
+      return this.ngFirestore.collection('UsersProfile').ref.where('role', '==', 'Admin');
     }
 }
