@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
       this.authService
       .SignIn(email.value, password.value)
       .then((res) => {
-        this.router.navigate(['faculty-menu']);
+        this.router.navigate(['admin-dashboard']);
         //  if(this.role == 'Faculty'){
         //     this.router.navigate(['faculty-menu']);
         //    // this.loginform.reset();
