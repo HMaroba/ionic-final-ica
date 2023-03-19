@@ -138,6 +138,8 @@ export class UserService {
   SignOut() {
     return this.ngFireAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('profileData');
+      localStorage.removeItem('userUID');
       this.router.navigate(['home']);
     });
   }
