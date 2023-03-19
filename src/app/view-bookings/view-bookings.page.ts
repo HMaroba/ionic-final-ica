@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BookingService } from '../Services/booking.service';
+import Booking from '../Models/booking';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-view-bookings',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewBookingsPage implements OnInit {
 
-  constructor() { }
+  bookings!: Booking[];
+
+  constructor(
+    public formBuilder: FormBuilder,
+    public bookingService: BookingService
+  ) {}
 
   ngOnInit() {
+    this.bookingService.getBookings().subscribe((res) => {
+      this.bookings = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Booking),
+        };
+      });
+    });
   }
-
+  AppointmentList() {
+    this.bookingService.getBookings().subscribe((data) => {
+      console.log(data);
+    });
+  }
 }
