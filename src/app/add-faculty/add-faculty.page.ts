@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FacultyService } from '../Services/faculty.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-faculty',
@@ -13,6 +15,8 @@ export class AddFacultyPage implements OnInit {
 
   constructor(
     public formBuilder : FormBuilder,
+    public facultyService: FacultyService,
+    public router : Router,
   ) { }
 
   get errorControl(){
@@ -26,7 +30,13 @@ ngOnInit() {
 }
 
   submitForm(){
-
+    this.isSubmitted= true;
+    if(this.rstform.valid){
+      this.facultyService.addFaculty(this.rstform.value).then((res: any) => {
+        this.router.navigate(['/admin-dashboard']);
+      })
+        .catch((error: any) => console.log(error));
+    }
   }
 
 }
