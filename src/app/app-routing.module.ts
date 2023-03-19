@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'view-bookings',
-    canActivate: [GuardGuard],
+    // canActivate: [GuardGuard],
     loadChildren: () => import('./view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
   },
   {
@@ -60,7 +60,7 @@ const routes: Routes = [
     loadChildren: () => import('./add-faculty/add-faculty.module').then( m => m.AddFacultyPageModule)
   },
   {
-    path: 'admin-update-bookings',
+    path: 'admin-update-bookings/:id',
     loadChildren: () => import('./admin-update-bookings/admin-update-bookings.module').then( m => m.AdminUpdateBookingsPageModule)
   },
 ];
