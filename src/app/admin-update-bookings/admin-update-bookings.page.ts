@@ -50,7 +50,7 @@ export class AdminUpdateBookingsPage implements OnInit {
   updateData() {
     if (this.updateform.valid) {
       this.isSubmitted = true;
-      this.bookingService.updateBooking(this.id, this.updateform.value);
+      this.bookingService.adminUpdateBooking(this.id, this.updateform.value);
     }
   }
 }

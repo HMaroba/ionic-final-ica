@@ -27,6 +27,13 @@ export class BookingService {
 
       }).catch(error => console.log(error));
     }
+    adminUpdateBooking(id: string, booking: Booking){
+      this.ngFirestore.collection('Bookings').doc(id).update(booking)
+      .then(() => {
+        this.router.navigate(['/view-bookings']);
+
+      }).catch(error => console.log(error));
+    }
     deleteBooking(id : string){
       this.ngFirestore.doc('Bookings/' +id).delete();
     }
