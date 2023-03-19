@@ -23,7 +23,7 @@ export class BookingService {
     updateBooking(id: string, booking: Booking){
       this.ngFirestore.collection('Bookings').doc(id).update(booking)
       .then(() => {
-        this.router.navigate(['/faculty-menu']);
+        this.router.navigate(['/dashboard']);
 
       }).catch(error => console.log(error));
     }

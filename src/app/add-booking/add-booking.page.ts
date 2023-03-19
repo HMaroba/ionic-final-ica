@@ -38,7 +38,7 @@ export class AddBookingPage implements OnInit {
       this.bookingService.book(this.bookingform.value).then((res: any) => {
         console.log(res)
         this.bookingform.reset();
-        this.router.navigate(['/faculty-menu']);
+        this.router.navigate(['/dashboard']);
       })
         .catch((error: any) => console.log(error));
     }

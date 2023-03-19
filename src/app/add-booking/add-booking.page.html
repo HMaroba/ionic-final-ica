@@ -55,6 +55,7 @@
         <ion-input
           placeholder="Enter faculty email"
           formControlName="emailAddress"
+          type="email"
         ></ion-input>
       </ion-item>
       <span
@@ -75,6 +76,7 @@
         <ion-input
           placeholder="Enter faculty phone numbers"
           formControlName="phoneNumbers"
+          type="number"
         ></ion-input>
       </ion-item>
       <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['required']">
