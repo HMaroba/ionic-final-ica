@@ -42,7 +42,11 @@ export class RegisterPage implements OnInit {
 
   register(email: any, password: any){
     this.isSubmitted = true;
-    console.log(this.loginform.value);
+    // this.usersServices.createProfile(this.userProfile).then(() => {
+    //   console.log("Data Added")
+    //   this.loginform.reset();
+    //   this.router.navigate(['/home']);
+    // })
     if(this.loginform.valid){
       this.usersServices.saveProfile(this.loginform.value).then((res: any) => {
         console.log(res)

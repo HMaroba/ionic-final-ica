@@ -10,6 +10,7 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
+    <ion-card>
     <form [formGroup]="rstform" (ngSubmit)="submitForm()">
       <ion-item>
         <ion-label position="floating">Faculty Name</ion-label>
@@ -26,5 +27,6 @@
     </span>
       <ion-button expand="block" type="Submit">Submit</ion-button>
     </form>
+  </ion-card>
   </div>
 </ion-content>

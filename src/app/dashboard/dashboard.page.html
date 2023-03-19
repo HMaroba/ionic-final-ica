@@ -12,8 +12,9 @@
 <ion-content [fullscreen]="true">
   <ion-col>
   <ion-searchbar
-  placeholder="Search Bookings"
+  placeholder="Search by Booking Status"
   show-clear-button="always"
+  (ionInput)="filterList($event)"
   style="position: fixed; z-index: 999"
 ></ion-searchbar>
   <ion-row style="margin-top: 50px; margin-bottom: 5px;">
