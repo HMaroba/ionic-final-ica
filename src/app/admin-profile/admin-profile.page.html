@@ -13,7 +13,8 @@
   <div style="margin-top: 30%;">
     <ion-card  *ngIf="userService.userData as user">
      <ion-card-header>
-      <ion-card-title>Hlalele Maroba</ion-card-title>
+      <ion-card-title>{{(user.displayName) ? user.displayName :
+        'User'}}</ion-card-title>
      </ion-card-header>
      <ion-card-content>
       <ion-row>
