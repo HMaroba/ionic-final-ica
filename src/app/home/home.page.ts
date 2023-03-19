@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService} from '../api/user.service';
 import { Router } from '@angular/router';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import { ProfileService } from '../Services/profile.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,6 +14,7 @@ export class HomePage implements OnInit {
   loginform!: FormGroup;
   isSubmitted = false;
   role = localStorage.getItem('role');
+  ROLE : any;
   id =   localStorage.getItem('userUID') as string;
 
   get errorControl(){
@@ -25,8 +24,7 @@ export class HomePage implements OnInit {
   constructor(public authService: UserService,
     public formBuilder: FormBuilder,
     public router: Router,
-    public db: AngularFirestore,
-
+    public profile: ProfileService,
     ) {}
 
   ngOnInit() {
@@ -36,6 +34,8 @@ export class HomePage implements OnInit {
     })
   }
   login(email : any,  password: any){
+    this.ROLE = this.profile.getRole('Admin');
+    console.log(this.ROLE);
     this.isSubmitted= true;
     if(this.loginform.valid){
       console.log(this.loginform.value)

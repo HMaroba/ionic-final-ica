@@ -3,6 +3,7 @@ import { UserProfile } from '../Models/UserProfile';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,10 @@ export class ProfileService {
 
     saveProfile(addProfile: UserProfile){
       return this.ngFirestore.collection('UsersProfile').add(addProfile);
+    }
+    getRole(role: string){
+      return new Promise<any>((resolve) => {
+        this.ngFirestore.collection('UsersProfile' , ref => ref.where('role', '==', role)).valueChanges().subscribe(roles => resolve(roles));
+      })
     }
 }

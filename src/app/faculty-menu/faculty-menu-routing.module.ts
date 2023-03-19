@@ -41,7 +41,6 @@ const routes: Routes = [
       },
       {
         path: '',
-        canActivate: [GuardGuard],
         redirectTo: '/faculty-menu/faculty-dashboard',
         pathMatch: 'full'
       }
@@ -50,7 +49,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [GuardGuard],
     redirectTo: '/faculty-menu/faculty-menu/faculty-dashboard',
     pathMatch: 'full'
   }
