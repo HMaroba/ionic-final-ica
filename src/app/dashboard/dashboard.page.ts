@@ -10,13 +10,13 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
- public bookings!: Booking[];
- public loadedBookings!: any[];
+  public bookings!: Booking[];
+  public loadedBookings!: Booking[];
 
   constructor(
     public formBuilder: FormBuilder,
     public bookingService: BookingService,
-    public firestore: AngularFirestore,
+    public firestore: AngularFirestore
   ) {}
 
   ngOnInit() {
@@ -27,10 +27,13 @@ export class DashboardPage implements OnInit {
           ...(t.payload.doc.data() as Booking),
         };
       });
+      this.loadedBookings = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Booking),
+        };
+      });
     });
-    this.firestore.collection('Bookings').valueChanges().subscribe(bookingList => {
-      this.loadedBookings = bookingList;
-    })
   }
   deleteBooking(id: any) {
     console.log(id);
@@ -40,23 +43,23 @@ export class DashboardPage implements OnInit {
   }
   initializeItems(): void {
     this.bookings = this.loadedBookings;
-    console.log(this.loadedBookings);
   }
-  filterList(event: any){
-this.initializeItems();
-const searchTerm = event.srcElement.value;
-if(!searchTerm){
-  return;
-}
-this.bookings = this.bookings.filter(currentItem => {
-  if(currentItem.status && searchTerm){
-    if(currentItem.status.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1){
-      return true;
+  filterList(event: any) {
+    this.initializeItems();
+    const searchTerm = event.srcElement.value;
+    if (!searchTerm) {
+      return;
     }
-    return false;
+    this.bookings = this.bookings.filter((currentItem) => {
+      if (currentItem.status && searchTerm) {
+        if (
+          currentItem.status.toLowerCase().indexOf(searchTerm.toLowerCase()) >
+          -1
+        ) {
+          return true;
+        }
+        return false;
+      }
+    });
   }
-})
-
-  }
-
 }
