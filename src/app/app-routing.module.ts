@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'add-faculty',
     loadChildren: () => import('./add-faculty/add-faculty.module').then( m => m.AddFacultyPageModule)
   },
+  {
+    path: 'admin-update-bookings',
+    loadChildren: () => import('./admin-update-bookings/admin-update-bookings.module').then( m => m.AdminUpdateBookingsPageModule)
+  },
 ];
 
 @NgModule({
