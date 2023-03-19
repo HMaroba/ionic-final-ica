@@ -10,7 +10,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
- public bookings!: any[];
+ public bookings!: Booking[];
  public loadedBookings!: any[];
 
   constructor(
@@ -20,15 +20,17 @@ export class DashboardPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.bookingService.getBookings().subscribe((res) => {
+      this.bookings = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Booking),
+        };
+      });
+    });
     this.firestore.collection('Bookings').valueChanges().subscribe(bookingList => {
-      this.bookings = bookingList;
       this.loadedBookings = bookingList;
     })
-  }
-  AppointmentList() {
-    this.bookingService.getBookings().subscribe((data) => {
-      console.log(data);
-    });
   }
   deleteBooking(id: any) {
     console.log(id);
