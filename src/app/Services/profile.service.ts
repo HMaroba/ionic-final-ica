@@ -34,7 +34,7 @@ export class ProfileService {
     }
     getRole(role: string){
       return new Promise<any>((resolve) => {
-        this.ngFirestore.collection('UsersProfile' , ref => ref.where('role', '==', role)).valueChanges().subscribe(roles => resolve(roles));
+        this.ngFirestore.collection('UsersProfile' , ref => ref.where('role', '==', role));
       })
     }
 }

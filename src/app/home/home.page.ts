@@ -34,8 +34,7 @@ export class HomePage implements OnInit {
     })
   }
   login(email : any,  password: any){
-    this.ROLE = this.profile.getRole('Admin');
-    console.log(this.ROLE);
+    //this.ROLE = this.profile.getRole('Faculty');
     this.isSubmitted= true;
     if(this.loginform.valid){
       console.log(this.loginform.value)
@@ -44,11 +43,11 @@ export class HomePage implements OnInit {
       .then((res) => {
          if(this.role == 'Faculty'){
             this.router.navigate(['faculty-menu']);
-            this.loginform.reset();
+           // this.loginform.reset();
             console.log(this.role);
           }else{
             this.router.navigate(['admin-dashboard']);
-            this.loginform.reset();
+            //this.loginform.reset();
 
           }
         // if (this.authService.isEmailVerified == true) {
