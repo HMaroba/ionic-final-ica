@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center">My Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/admin-dashboard">
+        <ion-icon name="arrow-back-sharp" style="color: white;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin-top: 30%;">
+    <ion-button expand="block" type="Submit"  (click)="userService.SignOut()">Log Out</ion-button>
+
+  </div>
+</ion-content>

@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
       .SignIn(email.value, password.value)
       .then((res) => {
          if(this.role == 'Faculty'){
-            this.router.navigate(['faculty-menu']);
+            this.router.navigate(['admin-dashboard']);
            // this.loginform.reset();
             console.log(this.role);
           }else{

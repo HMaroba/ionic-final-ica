@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'admin-dashboard',
-    // canActivate: [GuardGuard],
+    canActivate: [GuardGuard],
     loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
   },
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'view-bookings',
-    // canActivate: [GuardGuard],
+    canActivate: [GuardGuard],
     loadChildren: () => import('./view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
   },
   {
@@ -57,11 +57,18 @@ const routes: Routes = [
   },
   {
     path: 'add-faculty',
+    canActivate: [GuardGuard],
     loadChildren: () => import('./add-faculty/add-faculty.module').then( m => m.AddFacultyPageModule)
   },
   {
     path: 'admin-update-bookings/:id',
+    canActivate: [GuardGuard],
     loadChildren: () => import('./admin-update-bookings/admin-update-bookings.module').then( m => m.AdminUpdateBookingsPageModule)
+  },
+  {
+    path: 'admin-profile',
+    canActivate: [GuardGuard],
+    loadChildren: () => import('./admin-profile/admin-profile.module').then( m => m.AdminProfilePageModule)
   },
 ];
 
