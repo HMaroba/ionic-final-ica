@@ -68,6 +68,22 @@
       >
         Status is required
       </span>
+      <!-- <ion-item>
+        <ion-label position="floating">Status</ion-label>
+        <ion-select
+          placeholder="Enter Status of booking"
+          formControlName="status"
+        >
+        <ion-select-option  value="Approved ">Approved</ion-select-option>
+        <ion-select-option value="Rejected">Rejected</ion-select-option>
+      </ion-select>
+      </ion-item>
+      <span
+        class="error"
+        *ngIf="isSubmitted && errorControl['status'].errors?.['required']"
+      >
+        Status is required
+      </span> -->
       <ion-item>
         <ion-label position="floating">Email Address</ion-label>
         <ion-input

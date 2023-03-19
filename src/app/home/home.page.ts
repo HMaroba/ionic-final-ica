@@ -8,7 +8,6 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import UserProfile from '../Models/UserProfile';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +21,7 @@ export class HomePage implements OnInit {
   id = localStorage.getItem('userUID') as string;
   usersCollection!: AngularFirestoreCollection<UserProfile>;
   users!: UserProfile[];
+  currentUser : any;
 
   get errorControl() {
     return this.loginform.controls;
@@ -58,34 +58,22 @@ export class HomePage implements OnInit {
       console.log(this.loginform.value);
       this.authService
         .SignIn(email.value, password.value)
-        .then((res) => {
-          this.router.navigate(['dashboard']);
-          // if (this.getRole('Admin')) {
-          //   this.router.navigate(['admin-dashboard']);
-          //   // this.loginform.reset();
-          // } else {
-          //   this.router.navigate(['dashboard']);
-          //   //this.loginform.reset();
-          // }
-          // if (this.authService.isEmailVerified == true) {
-          //   if(this.role == 'Faculty'){
-          //     this.router.navigate(['faculty-menu']);
-          //     this.loginform.reset();
-          //     console.log(this.role);
-          //   }else{
-          //     this.router.navigate(['admin-dashboard']);
-          //     this.loginform.reset();
-
-          //   }
-
-          // } else {
-          //   window.alert('Email is not verified');
-          //   return false;
-          // }
-        })
-        .catch((error) => {
-          window.alert(error.message);
-        });
+        .then((user) => {
+          this.firestore.collection("UsersProfile").ref.where("email", "==" , user.user?.email).onSnapshot(snap => {
+            snap.forEach(userRef => {
+              console.log("userRef" , userRef.data());
+              this.currentUser = userRef.data();
+              const userRole = this.currentUser.role;
+              console.log(userRole);
+              if(this.currentUser.role == "Faculty"){
+                this.router.navigate(['dashboard']);
+              }
+              else{
+                this.router.navigate(["admin-dashboard"]);
+              }
+            })
+          })
+        }).catch(err => err);
     }
   }
 }

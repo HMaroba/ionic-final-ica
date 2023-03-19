@@ -13,6 +13,8 @@ import {
 })
 export class UserService {
   userData: any;
+  currentUser : any;
+  public userStatus!: string;
 
   constructor(
     public afStore: AngularFirestore,
@@ -36,10 +38,47 @@ export class UserService {
   // Login in with email/password
   SignIn(email: string, password: string) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
+    // .then((user) => {
+    //   this.afStore.collection("Users").ref.where("username", "==" , user.user?.email).onSnapshot(snap => {
+    //     snap.forEach(userRef => {
+    //       console.log("userRef" , userRef.data());
+    //       this.currentUser = userRef.data();
+    //       console.log(this.currentUser);
+    //       console.log(this.currentUser.role );
+    //       if(this.currentUser.role == "Faculty"){
+    //         this.router.navigate(['dashboard']);
+    //       }
+    //       else{
+    //         window.alert("Admin");
+    //         this.router.navigate(["admin-dashboard"]);
+    //       }
+    //     })
+    //   })
+    // }).catch(err => err);
   }
   // Register user with email/password
   RegisterUser(email: string, password: string) {
-    return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+    return this.ngFireAuth.createUserWithEmailAndPassword(email, password)
+    .then((response) => {
+      let user = {
+        id : response.user?.uid,
+        username : response.user?.email,
+        role : 'Faculty',
+      }
+      this.afStore.collection("Users").add(user)
+      .then(user => {
+        user.get().then(x => {
+          console.log(x.data());
+          this.currentUser = x.data();
+          this.router.navigate(["/home"])
+
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    }).catch(err => {
+      console.log(err);
+    })
   }
   // Email verification when new user register
   SendVerificationMail() {
