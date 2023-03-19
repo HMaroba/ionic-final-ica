@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () => import('./view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
   },
   {
-    path: 'update',
+    path: 'update/:id',
     canActivate: [GuardGuard],
     loadChildren: () => import('./update-bookings/update-bookings.module').then( m => m.UpdateBookingsPageModule)
   },
@@ -69,6 +69,11 @@ const routes: Routes = [
     path: 'admin-profile',
     canActivate: [GuardGuard],
     loadChildren: () => import('./admin-profile/admin-profile.module').then( m => m.AdminProfilePageModule)
+  },
+  {
+    path: 'dashboard',
+    canActivate: [GuardGuard],
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
 ];
 

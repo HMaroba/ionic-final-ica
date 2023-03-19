@@ -10,19 +10,9 @@ const routes: Routes = [
     component: FacultyMenuPage,
     children : [
       {
-        path: 'faculty-dashboard',
-        canActivate: [GuardGuard],
-        loadChildren: () => import('../faculty-dashboard/faculty-dashboard.module').then( m => m.FacultyDashboardPageModule)
-      },
-      {
         path: 'add-booking',
         canActivate: [GuardGuard],
         loadChildren: () => import('../add-booking/add-booking.module').then( m => m.AddBookingPageModule)
-      },
-      {
-        path: 'view-bookings',
-        canActivate: [GuardGuard],
-        loadChildren: () => import('../view-bookings/view-bookings.module').then( m => m.ViewBookingsPageModule)
       },
       {
         path: 'update/:id',
@@ -46,11 +36,6 @@ const routes: Routes = [
       }
     ]
 
-  },
-  {
-    path: '',
-    redirectTo: '/faculty-menu/faculty-menu/faculty-dashboard',
-    pathMatch: 'full'
   }
 ];
 
