@@ -42,22 +42,16 @@ export class RegisterPage implements OnInit {
 
   register(email: any, password: any){
     this.isSubmitted = true;
-    // this.usersServices.createProfile(this.userProfile).then(() => {
-    //   console.log("Data Added")
-    //   this.loginform.reset();
-    //   this.router.navigate(['/home']);
-    // })
     if(this.loginform.valid){
-      this.usersServices.saveProfile(this.loginform.value).then((res: any) => {
-        console.log(res)
-        this.loginform.reset();
-        this.router.navigate(['/home']);
-      })
-        .catch((error: any) => console.log(error));
         this.userService
         .RegisterUser(email.value, password.value)
         .then(res => {
-            // Do something here
+          this.usersServices.saveProfile(this.loginform.value).then((res: any) => {
+            console.log(res)
+            this.loginform.reset();
+            this.router.navigate(['/home']);
+          })
+            .catch((error: any) => console.log(error));
             window.alert('Please check your inbox to verify email address');
             this.userService.SendVerificationMail();
         })
