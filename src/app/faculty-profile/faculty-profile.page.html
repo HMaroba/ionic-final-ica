@@ -8,24 +8,31 @@
 </ion-header>
 
 <ion-content>
-<div style="margin-top: 30%;">
+<div style="margin-top: 30%;" *ngFor="let dt of users">
   <ion-card  *ngIf="userService.userData as user">
     <ion-card-header>
-     <ion-card-title>{{(user.displayName) ? user.displayName :
-      'User'}}</ion-card-title>
+     <ion-card-title style="text-align: center;">{{dt.name}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <ion-row>
+        <ion-icon name="person" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
+        <ion-card-subtitle>{{dt.name}}</ion-card-subtitle>
+        <ion-card-subtitle style="margin-left: 6px;">{{dt.surname}}</ion-card-subtitle>
+
+      </ion-row>
      <ion-row>
        <ion-icon name="mail" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
        <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
 
      </ion-row>
+     <ion-row>
+      <ion-icon name="call" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
+      <ion-card-subtitle>{{dt.phoneNumber}}</ion-card-subtitle>
+
+    </ion-row>
       <ion-button expand="block" type="Submit"  (click)="userService.SignOut()">Log Out</ion-button>
     </ion-card-content>
    </ion-card>
-   <!-- <ion-card *ngFor="let dt of items">
-    <ion-card-subtitle>{{dt.phoneNumber}}</ion-card-subtitle>
-   </ion-card> -->
 
 </div>
 </ion-content>
