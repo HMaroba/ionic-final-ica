@@ -63,6 +63,7 @@ export class DashboardPage implements OnInit {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         const id = user.uid;
+        localStorage.setItem('userID', user.uid);
         console.log(id);
       } else {
         console.log('No User');

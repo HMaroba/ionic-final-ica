@@ -141,6 +141,7 @@ export class UserService {
       localStorage.removeItem('user');
       localStorage.removeItem('profileData');
       localStorage.removeItem('userUID');
+      localStorage.removeItem('userID');
       this.router.navigate(['home']);
     });
   }

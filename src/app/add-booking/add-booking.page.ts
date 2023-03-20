@@ -12,11 +12,12 @@ export class AddBookingPage implements OnInit {
 
   bookingform!: FormGroup;
   isSubmitted = false;
+  id =  localStorage.getItem('userID');
 
 
   constructor(public formBuilder: FormBuilder,
     public bookingService: BookingService,
-    public router: Router,
+    public router: Router
     ) {
      }
 
@@ -24,6 +25,7 @@ export class AddBookingPage implements OnInit {
     this.bookingform = this.formBuilder.group({
       facultyName : ['', Validators.required],
       purpose: ['', Validators.required],
+      userID : this.id,
       status: 'PENDING',
       date : ['', Validators.required],
       emailAddress : ['',[ Validators.required, Validators.email]],
