@@ -10,15 +10,16 @@ import UserProfile  from '../Models/UserProfile';
 export class FacultyProfilePage implements OnInit {
 
   users! : UserProfile[];
+  items: UserProfile[] = [];
+  userDetails: any= [];
+
   constructor(public userService: UserService) { }
 
   ngOnInit() {
-    // const data = localStorage.getItem('profileData');
-    // console.log(data);
-    const  profile  = JSON.parse(localStorage.getItem('profileData') as string);
-    console.log(profile);
-    this.users = profile;
-    console.log(this.users);
+    const data = localStorage.getItem('profileData');
+    this.userDetails = data;
+    this.items = Array.of(this.userDetails);
+    console.log(this.items);
   }
 
 }

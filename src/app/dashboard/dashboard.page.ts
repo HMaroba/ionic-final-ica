@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import Booking from '../Models/booking';
 import { BookingService } from '../Services/booking.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +13,16 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class DashboardPage implements OnInit {
   public bookings!: Booking[];
   public loadedBookings!: Booking[];
+  public userBookings!: Booking[];
+  currentUser! : any;
+
+
 
   constructor(
     public formBuilder: FormBuilder,
     public bookingService: BookingService,
-    public firestore: AngularFirestore
+    public firestore: AngularFirestore,
+    public afAuth : AngularFireAuth,
   ) {}
 
   ngOnInit() {
@@ -33,6 +39,31 @@ export class DashboardPage implements OnInit {
           ...(t.payload.doc.data() as Booking),
         };
       });
+    });
+    const id =  localStorage.getItem('userUID');
+    let user = this.afAuth.currentUser;
+
+    // this.firestore.collection('Bookings').ref.where('uid', '==' , id ).get()
+    // .then(book => {
+    //  this.userBookings = book.docs.map(e => {
+    //   return{
+    //     facultyName: e.data()['facultyName'],
+    //   }
+    //  })
+    // })
+
+
+
+    this.firestore.collection('Bookings')
+    .ref.where('email', '==', id)
+    .onSnapshot((snap) => {
+      snap.forEach((userRef) => {
+        console.log('userRef', userRef.data());
+        this.currentUser = userRef.data();
+        console.log(this.currentUser);
+      });
+
+
     });
   }
   deleteBooking(id: any) {
@@ -63,3 +94,4 @@ export class DashboardPage implements OnInit {
     });
   }
 }
+

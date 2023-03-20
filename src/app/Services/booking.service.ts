@@ -8,6 +8,8 @@ import Booking from '../Models/booking';
 })
 export class BookingService {
 
+  currentUser! : any;
+
   constructor(private ngFirestore: AngularFirestore,
     private router : Router,) { }
 
@@ -16,6 +18,18 @@ export class BookingService {
     }
     getBookings(){
       return this.ngFirestore.collection('Bookings').snapshotChanges();
+    }
+    getFacultyBookings(){
+      const id =  localStorage.getItem('userUID');
+      return this.ngFirestore.collection('Bookings')
+      .ref.where('email', '==', id)
+      .onSnapshot((snap) => {
+        snap.forEach((userRef) => {
+          console.log('userRef', userRef.data());
+          this.currentUser = userRef.data();
+          console.log(this.currentUser);
+        });
+      });
     }
     getBooking(id: any){
       return this.ngFirestore.collection('Bookings').doc(id).valueChanges()

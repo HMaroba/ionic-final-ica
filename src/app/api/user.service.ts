@@ -134,6 +134,7 @@ export class UserService {
     });
   }
 
+
   // Sign-out
   SignOut() {
     return this.ngFireAuth.signOut().then(() => {
