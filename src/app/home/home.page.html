@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title style="text-align: center"> HomePage </ion-title>
+    <ion-title> Seminar Hall Booking</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container1">
+    <ion-card style="box-shadow: none !important;">
     <form [formGroup]="loginform" (ngSubmit)="login(email, password)">
       <ion-title style="text-align: center; margin-bottom: 15%; color: #6c8be0; font-size: 30px;">Login Here</ion-title>
       <ion-item fill="solid" class="items">
@@ -44,11 +45,12 @@
         >Register</ion-button
       >
       <ion-title
-        style="text-align: center; margin-top: 20px; color: #6c8be0; font-size: medium; "
+        style="text-align: center; margin-top: 30px; color: #6c8be0; font-size: medium; "
         routerLink="/reset-password"
       >
         Forgot Password ?</ion-title
       >
     </form>
+  </ion-card>
   </div>
 </ion-content>

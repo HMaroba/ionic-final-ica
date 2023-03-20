@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import Booking from '../Models/booking';
 import { BookingService } from '../Services/booking.service';
-import { AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import UserProfile from '../Models/UserProfile';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,16 +14,14 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class DashboardPage implements OnInit {
   public bookings!: Booking[];
   public loadedBookings!: Booking[];
-  public userBookings!: Booking[];
-  currentUser! : any;
-
-
+  currentUser!: any;
+  userData!: UserProfile[];
 
   constructor(
     public formBuilder: FormBuilder,
     public bookingService: BookingService,
     public firestore: AngularFirestore,
-    public afAuth : AngularFireAuth,
+    public afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -40,31 +39,46 @@ export class DashboardPage implements OnInit {
         };
       });
     });
-    const id =  localStorage.getItem('userUID');
-    let user = this.afAuth.currentUser;
-
-    // this.firestore.collection('Bookings').ref.where('uid', '==' , id ).get()
-    // .then(book => {
-    //  this.userBookings = book.docs.map(e => {
-    //   return{
-    //     facultyName: e.data()['facultyName'],
-    //   }
-    //  })
-    // })
-
-
-
-    this.firestore.collection('Bookings')
-    .ref.where('email', '==', id)
-    .onSnapshot((snap) => {
-      snap.forEach((userRef) => {
-        console.log('userRef', userRef.data());
-        this.currentUser = userRef.data();
-        console.log(this.currentUser);
+    const id = localStorage.getItem('userUID');
+    this.firestore.firestore
+      .collection('UsersProfile')
+      .where('uid', '==', id)
+      .get()
+      .then((posts) => {
+        this.userData = posts.docs.map((e) => {
+          return {
+            email: e.data()['email'],
+            phoneNumber: e.data()['phoneNumber'],
+            facultyName: e.data()['facultyName'],
+            status: e.data()['status'],
+            uid: e.data()['uid'],
+            name: e.data()['name'],
+            surname: e.data()['surname'],
+            role: e.data()['role'],
+          };
+        });
       });
 
-
+    console.log(this.userData);
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        const id = user.uid;
+        console.log(id);
+      } else {
+        console.log('No User');
+      }
     });
+
+    this.firestore
+      .collection('Bookings')
+      .ref.where('email', '==', id)
+      .onSnapshot((snap) => {
+        snap.forEach((userRef) => {
+          console.log('userRef', userRef.data());
+          this.currentUser = userRef.data();
+          console.log(this.currentUser);
+        });
+      });
   }
   deleteBooking(id: any) {
     console.log(id);
@@ -94,4 +108,3 @@ export class DashboardPage implements OnInit {
     });
   }
 }
-

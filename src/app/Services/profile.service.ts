@@ -8,7 +8,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class ProfileService {
 
 currentUser! : any;
-user ! : any;
 
   constructor(private ngFirestore: AngularFirestore,
     public ngFireAuth: AngularFireAuth) {

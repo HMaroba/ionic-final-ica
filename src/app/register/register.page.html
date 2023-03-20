@@ -10,8 +10,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id="container">
+  <div id="container1">
     <form [formGroup]="loginform" (ngSubmit)="register(email,password)">
+      <ion-title style="text-align: center; margin-bottom: 15%; color: #6c8be0; font-size: 30px;">Create An Account</ion-title>
       <ion-item>
         <ion-label position="floating">First Name</ion-label>
         <ion-input
