@@ -14,6 +14,7 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
+    <ion-card style="box-shadow: none !important;">
     <form [formGroup]="updateform" (ngSubmit)="updateData()">
       <ion-item>
         <ion-label position="floating">Faculty Name</ion-label>
@@ -121,6 +122,7 @@
       </span>
       <ion-button expand="block" type="Submit" [disabled]="!updateform.valid">Submit</ion-button>
     </form>
+    </ion-card>
   </div>
 
 </ion-content>

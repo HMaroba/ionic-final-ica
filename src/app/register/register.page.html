@@ -11,6 +11,7 @@
 
 <ion-content [fullscreen]="true">
   <div id="container1">
+    <ion-card style="box-shadow: none !important;">
     <form [formGroup]="loginform" (ngSubmit)="register(email,password)">
       <ion-title style="text-align: center; margin-bottom: 15%; color: #6c8be0; font-size: 30px;">Create An Account</ion-title>
       <ion-item>
@@ -101,5 +102,6 @@
       </span>
       <ion-button expand="block" type="Submit">Submit</ion-button>
     </form>
+    </ion-card>
   </div>
 </ion-content>

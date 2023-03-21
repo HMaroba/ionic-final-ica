@@ -3,10 +3,10 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title style="text-align: center;">Update Bookings</ion-title>
+    <ion-title style="text-align: center">Update Bookings</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/faculty-profile">
-        <ion-icon name="person-sharp" style="color: white;"></ion-icon>
+        <ion-icon name="person-sharp" style="color: white"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -14,83 +14,93 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <form [formGroup]="updateform" (ngSubmit)="updateData()">
-      <ion-item>
-        <ion-label position="floating">Faculty Name</ion-label>
-        <ion-input
-          placeholder="Enter Faculty name"
-          formControlName="facultyName"
-        ></ion-input>
-      </ion-item>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['facultyName'].errors?.['required']"
-      >
-        Faculty name is required
-      </span>
-      <ion-item>
-        <ion-label position="floating">Date</ion-label>
-        <ion-input
-          type="date"
-          placeholder="Enter date of service"
-          formControlName="date"
-        ></ion-input>
-      </ion-item>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['date'].errors?.['required']"
-      >
-        Date is required
-      </span>
-      <ion-item>
-        <ion-label position="floating">Purpose</ion-label>
-        <ion-input
-          placeholder="Enter Purpose of booking"
-          formControlName="purpose"
-        ></ion-input>
-      </ion-item>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['purpose'].errors?.['required']"
-      >
-        Purpose is required
-      </span>
-      <ion-item>
-        <ion-label position="floating">Email Address</ion-label>
-        <ion-input
-          placeholder="Enter faculty email"
-          type="email"
-          formControlName="emailAddress"
-        ></ion-input>
-      </ion-item>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['emailAddress'].errors?.['required']"
-      >
-        Email address is required
-      </span>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['emailAddress'].errors?.['email']"
-      >
-        Email address is not valid
-      </span>
+    <ion-card style="box-shadow: none !important">
+      <form [formGroup]="updateform" (ngSubmit)="updateData()">
+        <ion-item>
+          <ion-label position="floating">Faculty Name</ion-label>
+          <ion-input
+            placeholder="Enter Faculty name"
+            formControlName="facultyName"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['facultyName'].errors?.['required']"
+        >
+          Faculty name is required
+        </span>
+        <ion-item>
+          <ion-label position="floating">Date</ion-label>
+          <ion-input
+            type="date"
+            placeholder="Enter date of service"
+            formControlName="date"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['date'].errors?.['required']"
+        >
+          Date is required
+        </span>
+        <ion-item>
+          <ion-label position="floating">Purpose</ion-label>
+          <ion-input
+            placeholder="Enter Purpose of booking"
+            formControlName="purpose"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['purpose'].errors?.['required']"
+        >
+          Purpose is required
+        </span>
+        <ion-item>
+          <ion-label position="floating">Email Address</ion-label>
+          <ion-input
+            placeholder="Enter faculty email"
+            type="email"
+            formControlName="emailAddress"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['emailAddress'].errors?.['required']"
+        >
+          Email address is required
+        </span>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['emailAddress'].errors?.['email']"
+        >
+          Email address is not valid
+        </span>
 
-      <ion-item>
-        <ion-label position="floating">Phone Numbers</ion-label>
-        <ion-input
-          placeholder="Enter faculty phone numbers"
-          type="number"
-          formControlName="phoneNumbers"
-        ></ion-input>
-      </ion-item>
-      <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['required']">
-        Phone number is required
-      </span>
-      <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['minlength']">
-        Phone number is 8 digits
-      </span>
-      <ion-button expand="block" type="Submit" [disabled]="!updateform.valid">Submit</ion-button>
-    </form>
+        <ion-item>
+          <ion-label position="floating">Phone Numbers</ion-label>
+          <ion-input
+            placeholder="Enter faculty phone numbers"
+            type="number"
+            formControlName="phoneNumbers"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['required']"
+        >
+          Phone number is required
+        </span>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['minlength']"
+        >
+          Phone number is 8 digits
+        </span>
+        <ion-button expand="block" type="Submit" [disabled]="!updateform.valid"
+          >Submit</ion-button
+        >
+      </form>
+    </ion-card>
   </div>
 </ion-content>
