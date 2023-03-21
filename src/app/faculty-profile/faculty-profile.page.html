@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 <div style="margin-top: 30%;" *ngFor="let dt of users">
   <ion-card  *ngIf="userService.userData as user" style="border-radius: 10px;">
     <ion-card-header>
