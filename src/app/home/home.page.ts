@@ -67,7 +67,7 @@ export class HomePage implements OnInit {
         })
         .catch((err) => {
           window.alert(
-            'Problem when logging in please try again or register if not'
+            'Problem when logging in,  please try again or register if not'
           );
         });
     }
