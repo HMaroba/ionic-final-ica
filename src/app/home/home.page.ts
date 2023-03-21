@@ -48,22 +48,27 @@ export class HomePage implements OnInit {
               snap.forEach((userRef) => {
                 console.log('userRef', userRef.data());
                 this.currentUser = userRef.data();
-                localStorage.setItem('profileData', JSON.stringify(this.currentUser));
+                localStorage.setItem(
+                  'profileData',
+                  JSON.stringify(this.currentUser)
+                );
                 const userRole = this.currentUser.role;
                 console.log(userRole);
                 if (this.currentUser.role == 'Faculty') {
                   this.loginform.reset();
                   this.router.navigate(['dashboard']);
-
                 } else {
                   this.loginform.reset();
                   this.router.navigate(['admin-dashboard']);
                 }
+
               });
             });
         })
         .catch((err) => {
-          window.alert(err.message);
+          window.alert(
+            'Problem when logging in please try again or register if not'
+          );
         });
     }
   }

@@ -4,10 +4,8 @@ import Booking from '../Models/booking';
 import { BookingService } from '../Services/booking.service';
 import {
   AngularFirestore,
-  AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +16,6 @@ export class DashboardPage implements OnInit {
   public bookings!: Booking[];
   public bookingList!: Booking[];
   public loadedBookings!: Booking[];
-  public userInfo! : any;
-  public loadInfo! : any;
 
 
   constructor(
@@ -54,8 +50,6 @@ export class DashboardPage implements OnInit {
         .valueChanges()
         .subscribe((data) => {
           console.log(data);
-          this.userInfo = data;
-          this.loadInfo = data;
         });
 
         this.firestore.collection('Bookings' , (ref) => ref.where('userID', '==' , user.uid)).snapshotChanges()
