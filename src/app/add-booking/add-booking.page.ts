@@ -39,10 +39,14 @@ export class AddBookingPage implements OnInit {
       console.log(this.bookingform.value)
       this.bookingService.book(this.bookingform.value).then((res: any) => {
         console.log(res)
+        window.alert('Booking Successfully placed');
         this.bookingform.reset();
         this.router.navigate(['/dashboard']);
       })
-        .catch((error: any) => console.log(error));
+      .catch((error) => {
+        console.log(error.message);
+        window.alert('Booking Failed please try again later');
+      });
     }
 
   }
