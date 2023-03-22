@@ -88,7 +88,7 @@
       <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['required']">
         Phone number is required
       </span>
-      <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['minlength']">
+      <span class="error" *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['minLength']">
         Phone number is 8 digits
       </span>
       <ion-button expand="block" type="Submit">Submit</ion-button>
