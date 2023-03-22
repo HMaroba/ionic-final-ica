@@ -15,6 +15,12 @@ export class HomePage implements OnInit {
   isSubmitted = false;
   currentUser: any;
 
+  public type = 'password';
+  public showPass = false;
+  passwordType: string = 'password';
+
+
+
   get errorControl() {
     return this.loginform.controls;
   }
@@ -32,6 +38,14 @@ export class HomePage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+  }
+  hideShowPassword(){
+   this.showPass = !this.showPass;
+   if(this.showPass){
+    this.passwordType= 'text'
+   }else{
+    this.passwordType = 'password'
+   }
   }
   login(email: any, password: any) {
     this.isSubmitted = true;

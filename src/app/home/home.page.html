@@ -6,51 +6,72 @@
 
 <ion-content [fullscreen]="true">
   <div id="container1">
-    <ion-card style="box-shadow: none !important;">
-    <form [formGroup]="loginform" (ngSubmit)="login(email, password)">
-      <ion-title style="text-align: center; margin-bottom: 15%; color: #6c8be0; font-size: 30px;">Login Here</ion-title>
-      <ion-item fill="solid" class="items">
-        <ion-label position="floating">Email Address</ion-label>
-        <ion-input
-          type="email"
-          formControlName="email"
-          placeholder="Enter your email address"
-          #email
-        ></ion-input>
-      </ion-item>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['email'].errors?.['required']"
-      >
-        Email address is required
-      </span>
-      <ion-item fill="solid" style="margin-top: 10px" class="items">
-        <ion-label position="floating">Password</ion-label>
-        <ion-input
-          formControlName="password"
-          placeholder="Enter your password "
-          type="password"
-          #password
-        ></ion-input>
-      </ion-item>
-      <span
-        class="error"
-        *ngIf="isSubmitted && errorControl['password'].errors?.['required']"
-      >
-        Password is required
-      </span>
+    <ion-card style="box-shadow: none !important">
+      <form [formGroup]="loginform" (ngSubmit)="login(email, password)">
+        <ion-title
+          style="
+            text-align: center;
+            margin-bottom: 15%;
+            color: #6c8be0;
+            font-size: 30px;
+          "
+          >Login Here</ion-title
+        >
+        <ion-item fill="solid" class="items">
+          <ion-label position="floating">Email Address</ion-label>
+          <ion-input
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email address"
+            #email
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['email'].errors?.['required']"
+        >
+          Email address is required
+        </span>
+        <ion-item fill="solid" style="margin-top: 10px" class="items">
+          <ion-label position="floating">Password</ion-label>
+          <div slot="end" *ngIf="!showPass">
+            <ion-icon name="eye" style="font-size: 25px;" (click)="hideShowPassword()"></ion-icon>
+          </div>
+          <div slot="end" *ngIf="showPass">
+            <ion-icon name="eye-off" style="font-size: 25px;"  (click)="hideShowPassword()"></ion-icon>
+          </div>
+          <ion-input
+            formControlName="password"
+            placeholder="Enter your password "
+            [type]="passwordType"
+            #password
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['password'].errors?.['required']"
+        >
+          Password is required
+        </span>
 
-      <ion-button expand="block" type="Submit" style="margin-top: 20px;">Submit</ion-button>
-      <ion-button expand="block" routerLink="/register" type="Submit"
-        >Register</ion-button
-      >
-      <ion-title
-        style="text-align: center; margin-top: 30px; color: #6c8be0; font-size: medium; "
-        routerLink="/reset-password"
-      >
-        Forgot Password ?</ion-title
-      >
-    </form>
-  </ion-card>
+        <ion-button expand="block" type="Submit" style="margin-top: 20px"
+          >Submit</ion-button
+        >
+        <ion-button expand="block" routerLink="/register" type="Submit"
+          >Register</ion-button
+        >
+        <ion-title
+          style="
+            text-align: center;
+            margin-top: 30px;
+            color: #6c8be0;
+            font-size: medium;
+          "
+          routerLink="/reset-password"
+        >
+          Forgot Password ?</ion-title
+        >
+      </form>
+    </ion-card>
   </div>
 </ion-content>
