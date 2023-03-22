@@ -27,6 +27,12 @@
       >
         First name is required
       </span>
+      <span
+      class="error2"
+      *ngIf="isSubmitted && errorControl['name'].errors?.['pattern']"
+    >
+      Please enter a valid name
+    </span>
       <ion-item>
         <ion-label position="floating">Last Name</ion-label>
         <ion-input
@@ -40,6 +46,12 @@
       >
         Last name is required
       </span>
+      <span
+      class="error2"
+      *ngIf="isSubmitted && errorControl['surname'].errors?.['pattern']"
+    >
+      Please enter a valid last name
+    </span>
       <ion-item>
         <ion-label position="floating">Phone Number</ion-label>
         <ion-input
@@ -100,6 +112,12 @@
       >
         Password should be atleast 8 characters
       </span>
+      <span
+      class="error2"
+      *ngIf="isSubmitted && errorControl['password'].errors?.['pattern']"
+    >
+      Password must contain a least one uppercase, one lowercase and one number.
+    </span>
       <ion-button expand="block" type="Submit">Submit</ion-button>
     </form>
     </ion-card>

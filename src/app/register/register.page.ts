@@ -31,11 +31,12 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
     this.loginform = this.formBuilder.group({
       email : ['',[ Validators.required,   Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      name : ['', Validators.required],
-      surname : ['', Validators.required],
+      name : ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+      surname : ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
       role: 'Faculty',
       uid : this.id,
-      password : ['', [Validators.required, Validators.minLength(8)]],
+      password : ['', [Validators.required, Validators.minLength(8),
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]],
       phoneNumber : ['', [Validators.required, Validators.pattern("[0-9]{8}")]]
     })
   }
