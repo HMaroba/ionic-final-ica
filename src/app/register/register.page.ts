@@ -53,11 +53,12 @@ export class RegisterPage implements OnInit {
             this.router.navigate(['/home']);
           })
             .catch((error: any) => console.log(error));
-            window.alert('Please check your inbox to verify email address');
+            window.alert('Registration successfull, Please check your inbox to verify email address');
             this.userService.SendVerificationMail();
         })
         .catch((error) => {
-          window.alert(error.message);
+          console.log(error.message);
+          window.alert('Registration Failed please try again later or login if registered');
         });
     }
     }
