@@ -65,6 +65,10 @@ const routes: Routes = [
     canActivate: [GuardGuard],
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  }
 ];
 
 @NgModule({
