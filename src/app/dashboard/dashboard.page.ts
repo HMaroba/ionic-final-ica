@@ -5,6 +5,7 @@ import { BookingService } from '../Services/booking.service';
 import {
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,7 @@ export class DashboardPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public bookingService: BookingService,
+    public afAuth: AngularFireAuth,
     public firestore: AngularFirestore,
   ) {}
 
@@ -38,6 +40,12 @@ export class DashboardPage implements OnInit {
         };
       });
     });
+    //get current user
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        localStorage.setItem('userID', user.uid);
+      }
+    })
   }
   deleteBooking(id: any) {
     console.log(id);
