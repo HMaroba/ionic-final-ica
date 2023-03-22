@@ -43,7 +43,7 @@ export class AdminUpdateBookingsPage implements OnInit {
       status: ['', Validators.required],
       date : ['', Validators.required],
       emailAddress : ['',[ Validators.required, Validators.email]],
-      phoneNumbers : ['', [Validators.required, Validators.minLength(8)]]
+      phoneNumbers : ['', [Validators.required, Validators.pattern("[0-9]{8}")]]
     });
   }
 

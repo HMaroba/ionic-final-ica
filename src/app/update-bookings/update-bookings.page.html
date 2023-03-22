@@ -93,7 +93,7 @@
         </span>
         <span
           class="error"
-          *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['minlength']"
+          *ngIf="isSubmitted && errorControl['phoneNumbers'].errors?.['pattern']"
         >
           Phone number is 8 digits
         </span>

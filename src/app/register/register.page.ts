@@ -36,7 +36,7 @@ export class RegisterPage implements OnInit {
       role: 'Faculty',
       uid : this.id,
       password : ['', [Validators.required, Validators.minLength(8)]],
-      phoneNumber : ['', [Validators.required, Validators.minLength(8)]]
+      phoneNumber : ['', [Validators.required, Validators.pattern("[0-9]{8}")]]
     })
   }
 

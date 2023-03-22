@@ -41,7 +41,7 @@ export class UpdateBookingsPage implements OnInit {
       purpose: ['', Validators.required],
       date : ['', Validators.required],
       emailAddress : ['',[ Validators.required, Validators.email]],
-      phoneNumbers : ['', [Validators.required, Validators.minLength(8)]]
+      phoneNumbers : ['', [Validators.required, Validators.pattern("[0-9]{8}")]]
     });
   }
 

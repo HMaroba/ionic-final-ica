@@ -56,7 +56,7 @@
     </span>
     <span
       class="error2"
-      *ngIf="isSubmitted && errorControl['phoneNumber'].errors?.['minlength']"
+      *ngIf="isSubmitted && errorControl['phoneNumber'].errors?.['pattern']"
     >
       Phone number should be 8 characters
     </span>

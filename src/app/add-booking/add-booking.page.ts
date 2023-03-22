@@ -29,7 +29,7 @@ export class AddBookingPage implements OnInit {
       status: 'PENDING',
       date : ['', Validators.required],
       emailAddress : ['',[ Validators.required, Validators.email]],
-      phoneNumbers : ['', [Validators.required, Validators.minLength(8)]]
+      phoneNumbers : ['', [Validators.required, Validators.pattern("[0-9]{8}")]]
     })
   }
 
