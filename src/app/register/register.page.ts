@@ -52,6 +52,8 @@ export class RegisterPage implements OnInit {
             this.afAuth.authState.subscribe((user) => {
               if (user) {
                 window.alert('Account already exists please login');
+                this.loginform.reset();
+                this.router.navigate(['/home']);
               }else{
                 window.alert('Please check your inbox to verify email address');
                 this.saveProfile();
