@@ -6,7 +6,64 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content [fullscreen]="true">
+  <ion-title style="margin-top: 10px;">Faculty Bookings</ion-title>
+  <!-- <ion-list class="ios list-ios hydrated">
 
-<ion-content>
+    <ion-item *ngFor="let book of bookings" class="user-list">
+      <ion-label>
+        <h5>
+          <ion-icon name="person"></ion-icon> {{book.facultyName}}
+        </h5>
+        <p>
+          <ion-icon name="call"></ion-icon> {{book.phoneNumbers}}
+        </p>
+        <p style="color: orange;">
+          <ion-icon name="mail"></ion-icon> {{book.status}}
+        </p>
+        <p>
+          <ion-icon name="calendar"></ion-icon> {{book.date}}
+        </p>
+      </ion-label>
 
+      <div class="item-note" item-end>
+        <button ion-button clear>
+          <ion-icon name="create" style="zoom:2.0" [routerLink]="['/admin-update-bookings', book.id]"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list> -->
+  <ion-card
+    *ngFor="let book of bookings"
+    class="user-list"
+    style="background-color: #6c8be0"
+    [routerLink]="['/admin-update-bookings', book.id]"
+  >
+    <ion-card-header>
+      <ion-card-title style="color: white"
+        ><ion-icon name="home-sharp"></ion-icon>
+        {{book.facultyName}}</ion-card-title
+      >
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle style="color: white">
+        <ion-icon name="call-sharp"></ion-icon>
+        {{book.phoneNumbers}}</ion-card-subtitle
+      >
+      <ion-row>
+        <ion-card-subtitle style="color: orange">
+          <ion-icon name="mail"></ion-icon> {{book.status}}</ion-card-subtitle
+        >
+        <!-- <ion-icon
+          name="create"
+          style="margin-left: 170px; color: white; font-size: 30px"
+          [routerLink]="['/admin-update-bookings', book.id]"
+        ></ion-icon> -->
+      </ion-row>
+      <ion-card-subtitle style="color: white"
+        ><ion-icon name="calendar"></ion-icon> {{book.date}}</ion-card-subtitle
+      >
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

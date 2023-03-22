@@ -7,6 +7,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <div style="margin-top: 30%;"  *ngFor="let dt of users">
+    <ion-card  *ngIf="userService.userData as user" style="border-radius: 10px;">
+      <ion-card-header>
+       <ion-card-title style="text-align: center; font-size: 23px;">{{dt.role}} Profile</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-icon name="person" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
+          <ion-card-subtitle style="font-size: 18px;">{{dt.name}}</ion-card-subtitle>
+          <ion-card-subtitle style="margin-left: 6px; font-size: 18px;">{{dt.surname}}</ion-card-subtitle>
 
+        </ion-row>
+       <ion-row>
+         <ion-icon name="mail" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
+         <ion-card-subtitle style="font-size: 18px;">{{user.email}}</ion-card-subtitle>
+
+       </ion-row>
+       <ion-row>
+        <ion-icon name="call" style="font-size: 20px; margin-right: 10px;" ></ion-icon>
+        <ion-card-subtitle style="font-size: 18px;">{{dt.phoneNumber}}</ion-card-subtitle>
+
+      </ion-row>
+        <ion-button expand="block" type="Submit"  (click)="userService.SignOut()"
+        style="margin-top: 30px; margin-bottom: 15px;"
+        >Log Out</ion-button>
+      </ion-card-content>
+     </ion-card>
+  </div>
 </ion-content>
+
