@@ -38,23 +38,6 @@ export class UserService {
   // Login in with email/password
   SignIn(email: string, password: string) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
-    // .then((user) => {
-    //   this.afStore.collection("Users").ref.where("username", "==" , user.user?.email).onSnapshot(snap => {
-    //     snap.forEach(userRef => {
-    //       console.log("userRef" , userRef.data());
-    //       this.currentUser = userRef.data();
-    //       console.log(this.currentUser);
-    //       console.log(this.currentUser.role );
-    //       if(this.currentUser.role == "Faculty"){
-    //         this.router.navigate(['dashboard']);
-    //       }
-    //       else{
-    //         window.alert("Admin");
-    //         this.router.navigate(["admin-dashboard"]);
-    //       }
-    //     })
-    //   })
-    // }).catch(err => err);
   }
   // Register user with email/password
   RegisterUser(email: string, password: string) {
