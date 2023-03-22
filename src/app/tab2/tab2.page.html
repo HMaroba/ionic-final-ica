@@ -10,36 +10,42 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <ion-card>
-    <form [formGroup]="rstform" (ngSubmit)="submitForm()">
-      <ion-item>
-        <ion-label position="floating">Message</ion-label>
-        <ion-input
-          placeholder="Enter faculty message"
-          formControlName="message"
-        ></ion-input>
-      </ion-item>
-      <span
-      class="error"
-      *ngIf="isSubmitted && errorControl['message'].errors?.['required']"
-    >
-      Faculty message is required
-    </span>
-    <ion-item>
-      <ion-label position="floating">Today Date</ion-label>
-      <ion-input
-        placeholder="Enter date today"
-        formControlName="date"
-      ></ion-input>
-    </ion-item>
-    <span
-    class="error"
-    *ngIf="isSubmitted && errorControl['date'].errors?.['required']"
-  >
-    Date is required
-  </span>
-      <ion-button expand="block" type="Submit">Submit</ion-button>
-    </form>
-  </ion-card>
+      <form [formGroup]="notiform" (ngSubmit)="submitForm()">
+        <ion-item>
+          <ion-label position="floating">Message</ion-label>
+          <ion-input
+            placeholder="Enter faculty message"
+            formControlName="message"
+            type="text"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['message'].errors?.['required']"
+        >
+          Faculty message is required
+        </span>
+        <ion-item>
+          <ion-label position="floating">Today Date</ion-label>
+          <ion-input
+            placeholder="Enter date today"
+            formControlName="date"
+            type="date"
+          ></ion-input>
+        </ion-item>
+        <span
+          class="error"
+          *ngIf="isSubmitted && errorControl['date'].errors?.['required']"
+        >
+          Date is required
+        </span>
+        <ion-button
+          expand="block"
+          type="Submit"
+          style="margin-top: 25px; margin-bottom: 10px"
+          >Submit</ion-button
+        >
+      </form>
+    </ion-card>
   </div>
 </ion-content>
-

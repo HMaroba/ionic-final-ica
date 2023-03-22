@@ -10,7 +10,7 @@ import { NotificationsService } from '../Services/notifications.service';
 })
 export class Tab2Page implements OnInit {
 
-  rstform! : FormGroup;
+  notiform! : FormGroup;
   isSubmitted = false;
 
   constructor(
@@ -20,11 +20,11 @@ export class Tab2Page implements OnInit {
   ) { }
 
   get errorControl(){
-    return this.rstform.controls;
+    return this.notiform.controls;
   }
 
 ngOnInit() {
-  this.rstform = this.formBuilder.group({
+  this.notiform = this.formBuilder.group({
     message : ['', Validators.required],
     date : ['', Validators.required]
   })
@@ -32,11 +32,13 @@ ngOnInit() {
 
   submitForm(){
     this.isSubmitted= true;
-    if(this.rstform.valid){
-      this.notificationService.sendNotofication(this.rstform.value).then((res: any) => {
+    if(this.notiform.valid){
+      this.notificationService.sendNotofication(this.notiform.value).then((res: any) => {
         this.router.navigate(['/tabs/tab2']);
+        window.alert('Notification Successfully send');
+        this.notiform.reset();
       })
-        .catch((error: any) => console.log(error));
+        .catch((error: any) => window.alert(error));
     }
   }
 
