@@ -15,19 +15,18 @@
     <ion-icon
       name="add-circle-sharp"
       style="color: #6c8be0; font-size: 40px; margin-right: 6px"
-      routerLink="/tabs"
+      routerLink="/add-faculty"
     ></ion-icon>
   </ion-row>
   <ion-card
     style="height: 60px; background-color: #6c8be0"
-    routerLink="/view-bookings"
+    routerLink="/tabs"
     *ngFor="let fac of faculties"
   >
     <ion-row>
       <ion-card-title style="margin-left: 10px; margin-top: 5px; color: white"
         >{{fac.facultyName}}</ion-card-title
       >
-      <!-- <ion-icon name="trash" style="zoom: 2; color: red"></ion-icon> -->
     </ion-row>
   </ion-card>
 </ion-content>
