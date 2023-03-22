@@ -35,10 +35,10 @@
         <ion-item fill="solid" style="margin-top: 10px" class="items">
           <ion-label position="floating">Password</ion-label>
           <div slot="end" *ngIf="!showPass">
-            <ion-icon name="eye" style="font-size: 25px;" (click)="hideShowPassword()"></ion-icon>
+            <ion-icon name="eye" style="font-size: 25px;color: #6c8be0;" (click)="hideShowPassword()"></ion-icon>
           </div>
           <div slot="end" *ngIf="showPass">
-            <ion-icon name="eye-off" style="font-size: 25px;"  (click)="hideShowPassword()"></ion-icon>
+            <ion-icon name="eye-off" style="font-size: 25px; color: #6c8be0;"  (click)="hideShowPassword()"></ion-icon>
           </div>
           <ion-input
             formControlName="password"

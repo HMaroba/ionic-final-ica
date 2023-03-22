@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
   isSubmitted = false;
   currentUser: any;
 
-  public type = 'password';
+
   public showPass = false;
   passwordType: string = 'password';
 
