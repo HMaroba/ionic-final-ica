@@ -47,14 +47,15 @@ export class RegisterPage implements OnInit {
         this.userService
         .RegisterUser(email.value, password.value)
         .then(res => {
-          this.usersServices.saveProfile(this.loginform.value).then((res: any) => {
+          window.alert('Please check your inbox to verify email address');
+          this.userService.SendVerificationMail();
+          this.usersServices.saveProfile(this.loginform.value).
+          then((res: any) => {
             console.log(res)
             this.loginform.reset();
             this.router.navigate(['/home']);
           })
             .catch((error: any) => console.log(error));
-            window.alert('Registration successfull, Please check your inbox to verify email address');
-            this.userService.SendVerificationMail();
         })
         .catch((error) => {
           console.log(error.message);
