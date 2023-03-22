@@ -15,11 +15,8 @@ export class HomePage implements OnInit {
   isSubmitted = false;
   currentUser: any;
 
-
   public showPass = false;
   passwordType: string = 'password';
-
-
 
   get errorControl() {
     return this.loginform.controls;
@@ -39,13 +36,13 @@ export class HomePage implements OnInit {
       password: ['', [Validators.required]],
     });
   }
-  hideShowPassword(){
-   this.showPass = !this.showPass;
-   if(this.showPass){
-    this.passwordType= 'text'
-   }else{
-    this.passwordType = 'password'
-   }
+  hideShowPassword() {
+    this.showPass = !this.showPass;
+    if (this.showPass) {
+      this.passwordType = 'text';
+    } else {
+      this.passwordType = 'password';
+    }
   }
   login(email: any, password: any) {
     this.isSubmitted = true;
@@ -75,7 +72,6 @@ export class HomePage implements OnInit {
                   this.loginform.reset();
                   this.router.navigate(['admin-dashboard']);
                 }
-
               });
             });
         })
