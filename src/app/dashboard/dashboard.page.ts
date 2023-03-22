@@ -5,7 +5,6 @@ import { BookingService } from '../Services/booking.service';
 import {
   AngularFirestore,
 } from '@angular/fire/compat/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +21,6 @@ export class DashboardPage implements OnInit {
     public formBuilder: FormBuilder,
     public bookingService: BookingService,
     public firestore: AngularFirestore,
-    public afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -39,31 +37,6 @@ export class DashboardPage implements OnInit {
           ...(t.payload.doc.data() as Booking),
         };
       });
-    });
-
-    //get data for only logged in user
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        localStorage.setItem('userID', user.uid);
-        this.firestore
-        .collection('Bookings', (ref) => ref.where('userID', '==', user.uid))
-        .valueChanges()
-        .subscribe((data) => {
-          console.log(data);
-        });
-
-        this.firestore.collection('Bookings' , (ref) => ref.where('userID', '==' , user.uid)).snapshotChanges()
-        .subscribe((data)  => {
-         this.bookingList = data.map((t) => {
-           return {
-             id: t.payload.doc.id,
-             ...(t.payload.doc.data() as Booking),
-           };
-         });
-        });
-      } else {
-        console.log('No User');
-      }
     });
   }
   deleteBooking(id: any) {
