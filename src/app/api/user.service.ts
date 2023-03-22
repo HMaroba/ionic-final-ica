@@ -41,27 +41,7 @@ export class UserService {
   }
   // Register user with email/password
   RegisterUser(email: string, password: string) {
-    return this.ngFireAuth.createUserWithEmailAndPassword(email, password)
-    .then((response) => {
-      let user = {
-        id : response.user?.uid,
-        username : response.user?.email,
-        role : 'Faculty',
-      }
-      this.afStore.collection("Users").add(user)
-      .then(user => {
-        user.get().then(x => {
-          console.log(x.data());
-          this.currentUser = x.data();
-          this.router.navigate(["/home"])
-
-        })
-      }).catch(err => {
-        console.log(err)
-      })
-    }).catch(err => {
-      console.log(err);
-    })
+    return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
   }
   // Email verification when new user register
   SendVerificationMail() {

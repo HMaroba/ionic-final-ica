@@ -3,7 +3,6 @@ import { UserService } from '../api/user.service';
 import { Router } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +25,6 @@ export class RegisterPage implements OnInit {
     public router : Router,
     public userService: UserService,
     public usersServices: ProfileService,
-    public afAuth: AngularFireAuth,
     ) { }
 
 
@@ -49,22 +47,14 @@ export class RegisterPage implements OnInit {
         this.userService
         .RegisterUser(email.value, password.value)
         .then(res => {
-            this.afAuth.authState.subscribe((user) => {
-              if (user) {
-                window.alert('Account already exists please login');
-                this.loginform.reset();
-                this.router.navigate(['/home']);
-              }else{
-                window.alert('Please check your inbox to verify email address');
-                this.saveProfile();
-                this.userService.SendVerificationMail();
-              }
-            })
+            window.alert('Please check your inbox to verify email address');
+            this.userService.SendVerificationMail();
+            this.saveProfile();
 
         })
         .catch((error) => {
           console.log(error.message);
-          window.alert('Registration Failed please try again later');
+          window.alert('Registration Failed please try again later or login if registered');
         });
     }
     }
