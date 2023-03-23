@@ -52,6 +52,8 @@ export class HomePage implements OnInit {
       this.authService
         .SignIn(email.value, password.value)
         .then((user) => {
+          console.log(user.user?.emailVerified);
+          if(user.user?.emailVerified){
           this.firestore
             .collection('UsersProfile')
             .ref.where('email', '==', user.user?.email)
@@ -74,11 +76,18 @@ export class HomePage implements OnInit {
                 }
               });
             });
+          }else{
+            window.alert(
+              'Email address is not verified'
+            );
+            this.loginform.reset();
+          }
         })
         .catch((err) => {
           window.alert(
             'Problem when logging in,  please try again or register if not'
           );
+          this.loginform.reset();
         });
     }
   }
