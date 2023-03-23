@@ -1,5 +1,5 @@
 export default interface UserProfile {
-  uid: string;
+  id?: string;
   name: string;
   surname: string;
   phoneNumber: number;
