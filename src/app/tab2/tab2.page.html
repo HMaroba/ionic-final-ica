@@ -2,7 +2,14 @@
   <ion-toolbar>
     <ion-title style="text-align: center">Notifications</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button>
+
+      </ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/notifications">
+        <ion-icon name="notifications-sharp" style="color: white"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -39,6 +46,9 @@
         >
           Date is required
         </span>
+        <ion-item>
+          <ion-label>{{dateTime | date : 'dd/MM/yyyy'}}</ion-label>
+        </ion-item>
         <ion-button
           expand="block"
           type="Submit"
@@ -48,4 +58,26 @@
       </form>
     </ion-card>
   </div>
+  <ion-list class="ios list-ios hydrated">
+
+    <ion-item *ngFor="let noti of notifications" class="user-list">
+      <ion-label>
+        <h5>
+          <ion-icon name="alert-circle-sharp"></ion-icon> {{noti.message}}
+        </h5>
+        <p>
+          <ion-icon name="calendar-number-sharp"></ion-icon> {{noti.date}}
+        </p>
+        <p>
+          <ion-icon name="calendar-number-sharp"></ion-icon> {{noti.DateTime}}
+        </p>
+      </ion-label>
+
+      <div class="item-note" item-end>
+        <button ion-button clear (click)="deleteNotification(noti.id)">
+          <ion-icon name="trash" style="zoom:2.0; color: red;"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>

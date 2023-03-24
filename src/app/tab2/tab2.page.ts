@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../Services/notifications.service';
+import Notifications from '../Models/Notifications';
 
 @Component({
   selector: 'app-tab2',
@@ -12,6 +13,8 @@ export class Tab2Page implements OnInit {
 
   notiform! : FormGroup;
   isSubmitted = false;
+  notifications! : Notifications[];
+   dateTime: any;
 
   constructor(
     public formBuilder : FormBuilder,
@@ -24,10 +27,24 @@ export class Tab2Page implements OnInit {
   }
 
 ngOnInit() {
+
+  setTimeout(() => {
+    this.dateTime = new Date().toISOString();
+  })
+
   this.notiform = this.formBuilder.group({
     message : ['', Validators.required],
-    date : ['', Validators.required]
+    date : ['', Validators.required],
+    DateTime : this.dateTime,
   })
+  this.notificationService.getNotifications().subscribe((res) => {
+    this.notifications = res.map((t) => {
+      return {
+        id: t.payload.doc.id,
+        ...(t.payload.doc.data() as Notifications),
+      };
+    });
+  });
 }
 
   submitForm(){
@@ -39,6 +56,12 @@ ngOnInit() {
         this.notiform.reset();
       })
         .catch((error: any) => window.alert(error));
+    }
+  }
+  deleteNotification(id: any) {
+    console.log(id);
+    if (window.confirm('Are you sure you want to delete this message ? ')) {
+      this.notificationService.deleteNotification(id);
     }
   }
 
