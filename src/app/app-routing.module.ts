@@ -67,14 +67,17 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
+    canActivate: [GuardGuard],
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
     path: 'notifications',
+    canActivate: [GuardGuard],
     loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
   },
   {
     path: 'faculty-notifications',
+    canActivate: [GuardGuard],
     loadChildren: () => import('./faculty-notifications/faculty-notifications.module').then( m => m.FacultyNotificationsPageModule)
   }
 ];
