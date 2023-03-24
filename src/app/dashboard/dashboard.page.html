@@ -3,7 +3,7 @@
     <ion-title>Faculty Dashboard</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/faculty-profile">
-        <ion-icon name="person-sharp" style="color: white;"></ion-icon>
+        <ion-icon name="person-sharp" style="color: white"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -11,47 +11,51 @@
 
 <ion-content [fullscreen]="true">
   <ion-col>
-  <ion-searchbar
-  placeholder="Search by Booking Status"
-  show-clear-button="always"
-  (ionInput)="filterList($event)"
-  color="medium"
-  style="position: fixed; z-index: 999"
-></ion-searchbar>
-  <ion-row style="margin-top: 50px; margin-bottom: 5px; ">
-    <ion-title>Faculty Bookings</ion-title>
-    <ion-icon name="add-circle-sharp"
-    style="color: #6c8be0; font-size: 40px; margin-right: 10px;"
-     routerLink="/add-booking"></ion-icon>
-  </ion-row>
-</ion-col>
-  <ion-list class="ios list-ios hydrated">
+    <ion-searchbar
+      placeholder="Search by Booking Status"
+      show-clear-button="always"
+      (ionInput)="filterList($event)"
+      color="medium"
+      style="position: fixed; z-index: 999"
+    ></ion-searchbar>
+    <ion-row style="margin-top: 50px; margin-bottom: 5px">
+      <ion-title>Faculty Bookings</ion-title>
 
+      <ion-icon
+        name="add-circle-sharp"
+        style="color: #6c8be0; font-size: 40px; margin-right: 10px"
+        routerLink="/add-booking"
+      ></ion-icon>
+      <ion-icon
+        name="notifications-sharp"
+        style="color: #6c8be0; font-size: 40px; margin-right: 10px"
+        routerLink="/faculty-notifications"
+      ></ion-icon>
+    </ion-row>
+  </ion-col>
+  <ion-list class="ios list-ios hydrated">
     <ion-item *ngFor="let book of bookings" class="user-list">
       <ion-label>
-        <h5>
-          <ion-icon name="person"></ion-icon> {{book.facultyName}}
-        </h5>
-        <p>
-          <ion-icon name="call"></ion-icon> {{book.phoneNumbers}}
-        </p>
-        <p style="color: orange;">
+        <h5><ion-icon name="person"></ion-icon> {{book.facultyName}}</h5>
+        <p><ion-icon name="call"></ion-icon> {{book.phoneNumbers}}</p>
+        <p style="color: orange">
           <ion-icon name="mail"></ion-icon> {{book.status}}
         </p>
-        <p>
-          <ion-icon name="calendar"></ion-icon> {{book.date}}
-        </p>
+        <p><ion-icon name="calendar"></ion-icon> {{book.date}}</p>
       </ion-label>
 
       <div class="item-note" item-end>
         <button ion-button clear>
-          <ion-icon name="create" style="zoom:2.0" [routerLink]="['/update', book.id]"></ion-icon>
+          <ion-icon
+            name="create"
+            style="zoom: 2"
+            [routerLink]="['/update', book.id]"
+          ></ion-icon>
         </button>
         <button ion-button clear (click)="deleteBooking(book.id)">
-          <ion-icon name="trash" style="zoom:2.0; color: red;"></ion-icon>
+          <ion-icon name="trash" style="zoom: 2; color: red"></ion-icon>
         </button>
       </div>
     </ion-item>
   </ion-list>
-
 </ion-content>
