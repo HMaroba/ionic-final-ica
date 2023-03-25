@@ -45,7 +45,8 @@
           Date is required
         </span>
         <ion-item>
-          <ion-label>{{dateTime | date : 'dd/MM/yyyy'}}</ion-label>
+          <ion-label position="floating">Date Today</ion-label>
+          <ion-input formControlName="DateTime"  [ngModel]="dateTime | date : 'dd/MM/yyyy HH:mm' "></ion-input>
         </ion-item>
         <ion-button
           expand="block"

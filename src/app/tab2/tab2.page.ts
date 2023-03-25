@@ -13,7 +13,6 @@ export class Tab2Page implements OnInit {
 
   notiform! : FormGroup;
   isSubmitted = false;
-  notifications! : Notifications[];
    dateTime: any;
 
   constructor(
@@ -37,31 +36,18 @@ ngOnInit() {
     date : ['', Validators.required],
     DateTime : this.dateTime,
   })
-  this.notificationService.getNotifications().subscribe((res) => {
-    this.notifications = res.map((t) => {
-      return {
-        id: t.payload.doc.id,
-        ...(t.payload.doc.data() as Notifications),
-      };
-    });
-  });
 }
 
   submitForm(){
     this.isSubmitted= true;
+    console.log(this.notiform.value);
     if(this.notiform.valid){
       this.notificationService.sendNotofication(this.notiform.value).then((res: any) => {
-        this.router.navigate(['/tabs/tab2']);
+        this.router.navigate(['/notifications']);
         window.alert('Notification Successfully send');
-        this.notiform.reset();
+       // this.notiform.reset();
       })
         .catch((error: any) => window.alert(error));
-    }
-  }
-  deleteNotification(id: any) {
-    console.log(id);
-    if (window.confirm('Are you sure you want to delete this message ? ')) {
-      this.notificationService.deleteNotification(id);
     }
   }
 
