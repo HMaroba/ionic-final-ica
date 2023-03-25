@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationsService } from '../Services/notifications.service';
-import Notifications from '../Models/Notifications';
 
 @Component({
   selector: 'app-tab2',
@@ -33,7 +32,6 @@ ngOnInit() {
 
   this.notiform = this.formBuilder.group({
     message : ['', Validators.required],
-    date : ['', Validators.required],
     DateTime : this.dateTime,
   })
 }
@@ -45,7 +43,7 @@ ngOnInit() {
       this.notificationService.sendNotofication(this.notiform.value).then((res: any) => {
         this.router.navigate(['/notifications']);
         window.alert('Notification Successfully send');
-       // this.notiform.reset();
+       this.notiform.controls['message'].reset();
       })
         .catch((error: any) => window.alert(error));
     }
