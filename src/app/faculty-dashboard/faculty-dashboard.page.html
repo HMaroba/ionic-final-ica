@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title style="text-align: center;">Faculty Dasboard</ion-title>
+    <ion-title>Faculty Dasboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/faculty-profile">
+        <ion-icon name="person-sharp" style="color: white"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,23 +13,23 @@
   <ion-card style="height: 97%;">
   <ion-list style="margin-top: 5%;">
     <ion-item routerLink="/add-booking">
-        <ion-icon slot="start" name="add-circle-sharp" style="color: #6c8be0;font-size: 35px;"></ion-icon>
-        <ion-title>Add Bookings</ion-title>
+        <ion-icon slot="start" name="add-circle-sharp" style="color: #6c8be0;font-size: 30px;"></ion-icon>
+        <ion-title style="font-size: 17px;">Add Bookings</ion-title>
         <ion-icon name="chevron-forward-sharp"></ion-icon>
     </ion-item>
     <ion-item routerLink="/dashboard">
-      <ion-icon slot="start" name="list-sharp" style="color: #6c8be0; font-size: 35px;"></ion-icon>
-      <ion-title>Bookings</ion-title>
+      <ion-icon slot="start" name="list-sharp" style="color: #6c8be0; font-size: 30px;"></ion-icon>
+      <ion-title style="font-size: 17px;">Bookings</ion-title>
       <ion-icon name="chevron-forward-sharp"></ion-icon>
   </ion-item>
     <ion-item routerLink="/faculty-notifications">
-        <ion-icon slot="start" name="mail-sharp" style="color: #6c8be0; font-size: 35px;"></ion-icon>
-        <ion-title>Messages</ion-title>
+        <ion-icon slot="start" name="mail-sharp" style="color: #6c8be0; font-size: 30px;"></ion-icon>
+        <ion-title style="font-size: 17px;">Messages</ion-title>
         <ion-icon slot="end" name="chevron-forward-sharp"></ion-icon>
     </ion-item>
     <ion-item routerLink="/faculty-profile" style="height: 48px;">
-        <ion-icon slot="start" name="person-sharp" style="color: #6c8be0; font-size: 35px;"></ion-icon>
-        <ion-title>Logout</ion-title>
+        <ion-icon slot="start" name="person-sharp" style="color: #6c8be0; font-size: 30px;"></ion-icon>
+        <ion-title style="font-size: 17px;">Logout</ion-title>
         <ion-icon name="chevron-forward-sharp"></ion-icon>
     </ion-item>
 </ion-list>
