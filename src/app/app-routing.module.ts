@@ -79,6 +79,11 @@ const routes: Routes = [
     path: 'faculty-notifications',
     canActivate: [GuardGuard],
     loadChildren: () => import('./faculty-notifications/faculty-notifications.module').then( m => m.FacultyNotificationsPageModule)
+  },
+  {
+    path: 'faculty-dashboard',
+    canActivate: [GuardGuard],
+    loadChildren: () => import('./faculty-dashboard/faculty-dashboard.module').then( m => m.FacultyDashboardPageModule)
   }
 ];
 
