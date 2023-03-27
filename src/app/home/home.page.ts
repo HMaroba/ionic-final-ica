@@ -69,7 +69,7 @@ export class HomePage implements OnInit {
                 console.log(userRole);
                 if (this.currentUser.role == 'Faculty') {
                   this.loginform.reset();
-                  this.router.navigate(['dashboard']);
+                  this.router.navigate(['faculty-dashboard']);
                 } else {
                   this.loginform.reset();
                   this.router.navigate(['admin-dashboard']);
