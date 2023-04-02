@@ -35,10 +35,18 @@
         <ion-item fill="solid" style="margin-top: 10px" class="items">
           <ion-label position="floating">Password</ion-label>
           <div slot="end" *ngIf="!showPass">
-            <ion-icon name="eye" style="font-size: 25px;color: #6c8be0;" (click)="hideShowPassword()"></ion-icon>
+            <ion-icon
+              name="eye"
+              style="font-size: 25px; color: #6c8be0"
+              (click)="hideShowPassword()"
+            ></ion-icon>
           </div>
           <div slot="end" *ngIf="showPass">
-            <ion-icon name="eye-off" style="font-size: 25px; color: #6c8be0;"  (click)="hideShowPassword()"></ion-icon>
+            <ion-icon
+              name="eye-off"
+              style="font-size: 25px; color: #6c8be0"
+              (click)="hideShowPassword()"
+            ></ion-icon>
           </div>
           <ion-input
             formControlName="password"
@@ -54,17 +62,17 @@
           Password is required
         </span>
         <ion-title
-        style="
-          text-align: end;
-          margin-top: 15px;
-          margin-bottom: 15px;
-          color: #6c8be0;
-          font-size: medium;
-        "
-        routerLink="/reset-password"
-      >
-        Forgot Password ?</ion-title
-      >
+          style="
+            text-align: end;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: #6c8be0;
+            font-size: medium;
+          "
+          routerLink="/reset-password"
+        >
+          Forgot Password ?</ion-title
+        >
 
         <ion-button expand="block" type="Submit" style="margin-top: 20px"
           >Submit</ion-button
@@ -72,7 +80,6 @@
         <ion-button expand="block" routerLink="/register" type="Submit"
           >Register</ion-button
         >
-
       </form>
     </ion-card>
   </div>
