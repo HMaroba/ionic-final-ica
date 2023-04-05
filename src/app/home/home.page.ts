@@ -15,7 +15,6 @@ export class HomePage implements OnInit {
   isSubmitted = false;
   currentUser: any;
 
-
   public showPass = false;
   passwordType: string = 'password';
 
@@ -54,33 +53,31 @@ export class HomePage implements OnInit {
         .SignIn(email.value, password.value)
         .then((user) => {
           console.log(user.user?.emailVerified);
-          if(user.user?.emailVerified){
-          this.firestore
-            .collection('UsersProfile')
-            .ref.where('email', '==', user.user?.email)
-            .onSnapshot((snap) => {
-              snap.forEach((userRef) => {
-                console.log('userRef', userRef.data());
-                this.currentUser = userRef.data();
-                localStorage.setItem(
-                  'profileData',
-                  JSON.stringify(this.currentUser)
-                );
-                const userRole = this.currentUser.role;
-                console.log(userRole);
-                if (this.currentUser.role == 'Faculty') {
-                  this.loginform.reset();
-                  this.router.navigate(['faculty-dashboard']);
-                } else {
-                  this.loginform.reset();
-                  this.router.navigate(['admin-dashboard']);
-                }
+          if (user.user?.emailVerified) {
+            this.firestore
+              .collection('UsersProfile')
+              .ref.where('email', '==', user.user?.email)
+              .onSnapshot((snap) => {
+                snap.forEach((userRef) => {
+                  console.log('userRef', userRef.data());
+                  this.currentUser = userRef.data();
+                  localStorage.setItem(
+                    'profileData',
+                    JSON.stringify(this.currentUser)
+                  );
+                  const userRole = this.currentUser.role;
+                  console.log(userRole);
+                  if (this.currentUser.role == 'Faculty') {
+                    this.loginform.reset();
+                    this.router.navigate(['faculty-dashboard']);
+                  } else {
+                    this.loginform.reset();
+                    this.router.navigate(['admin-dashboard']);
+                  }
+                });
               });
-            });
-          }else{
-            window.alert(
-              'Email address is not verified'
-            );
+          } else {
+            window.alert('Email address is not verified');
             this.loginform.reset();
           }
         })

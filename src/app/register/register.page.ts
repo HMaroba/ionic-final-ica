@@ -76,6 +76,6 @@ export class RegisterPage implements OnInit {
         this.loginform.reset();
         this.router.navigate(['/home']);
       })
-      .catch((error: any) => console.log(error));
+      .catch((error: any) => console.log(error.message));
   }
 }
