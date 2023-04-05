@@ -56,8 +56,14 @@ export class RegisterPage implements OnInit {
       this.userService
         .RegisterUser(email.value, password.value)
         .then((res) => {
-          window.alert('Please check your inbox to verify email address');
-          this.userService.SendVerificationMail();
+          window.alert('Please check your inbox to verify email address, Please sometimes check inside spam enails');
+          this.userService.SendVerificationMail().then((result) => {
+            console.log(result)
+            console.log('Verification Send')
+          })
+          .catch((error) => {
+            console.log(error.message);
+          })
           this.saveProfile();
         })
         .catch((error) => {
