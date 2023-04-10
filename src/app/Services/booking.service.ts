@@ -37,6 +37,7 @@ export class BookingService {
     updateBooking(id: string, booking: Booking){
       this.ngFirestore.collection('Bookings').doc(id).update(booking)
       .then(() => {
+        window.alert("Booking Updated")
         this.router.navigate(['/dashboard']);
 
       }).catch(error => console.log(error));
@@ -44,6 +45,7 @@ export class BookingService {
     adminUpdateBooking(id: string, booking: Booking){
       this.ngFirestore.collection('Bookings').doc(id).update(booking)
       .then(() => {
+        window.alert("Booking Updated")
         this.router.navigate(['/tabs/tab1']);
 
       }).catch(error => console.log(error));
