@@ -44,7 +44,7 @@ export class BookingService {
     adminUpdateBooking(id: string, booking: Booking){
       this.ngFirestore.collection('Bookings').doc(id).update(booking)
       .then(() => {
-        this.router.navigate(['/view-bookings']);
+        this.router.navigate(['/tabs/tab1']);
 
       }).catch(error => console.log(error));
     }
