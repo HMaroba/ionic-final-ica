@@ -33,6 +33,7 @@ ngOnInit() {
     this.isSubmitted= true;
     if(this.rstform.valid){
       this.facultyService.addFaculty(this.rstform.value).then((res: any) => {
+        window.alert("New Faculty registered Successfully");
         this.router.navigate(['/admin-dashboard']);
       })
         .catch((error: any) => console.log(error));
