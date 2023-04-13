@@ -70,9 +70,11 @@ export class HomePage implements OnInit {
                   if (this.currentUser.role == 'Faculty') {
                     this.loginform.reset();
                     this.router.navigate(['faculty-dashboard']);
+                    this.isSubmitted = false;
                   } else {
                     this.loginform.reset();
                     this.router.navigate(['admin-dashboard']);
+                    this.isSubmitted = false;
                   }
                 });
               });
